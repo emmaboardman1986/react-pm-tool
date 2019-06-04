@@ -1,0 +1,33 @@
+@import '../../../../App.css';
+
+.Resource {
+	display: flex;
+	height: 12vh;
+	border-top: grey 1px solid;
+	width: 100%;
+	background-color: transparent;
+	box-sizing: border-box;
+}
+
+.Resource .DaysWrapper {
+	display: flex;
+	width: 40vw;
+}
+
+.Resource .DaysWrapper .DayWrapper {
+	display: flex;
+	flex-direction: column;
+	height: 13vh;
+	width: 40vw;
+
+}
+
+.Resource .DaysWrapper .DayWrapper div {
+	border-right: 0.5px var(--dark-grey) solid;
+	border-left: 0.5px var(--dark-grey) solid;
+}
+
+
+.Resource .DaysWrapper .DayWrapper div p {
+	visibility: hidden;
+}

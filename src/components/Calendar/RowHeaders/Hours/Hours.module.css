@@ -1,0 +1,12 @@
+@import '../../../../App.css';
+
+.Hours {
+	display: flex !important;
+	flex-direction: row !important;
+	margin: 1px;
+	line-height: 0.5em;
+	visibility: hidden;
+	
+}
+
+

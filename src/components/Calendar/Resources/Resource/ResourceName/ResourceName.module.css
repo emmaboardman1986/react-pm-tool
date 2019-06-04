@@ -1,0 +1,22 @@
+.ResourceName {
+	padding: 5% 1%;
+	background-color: transparent;
+	width: 25vw;
+	box-sizing: border-box;
+	height: 100%;
+	text-align: left;
+
+}
+
+
+.ResourceName h4 {
+	margin-left: 12%;
+	margin-bottom: 0;
+
+}
+
+.ResourceName p {
+	font-size: 0.65em;
+	margin: 2% 12%;
+
+}

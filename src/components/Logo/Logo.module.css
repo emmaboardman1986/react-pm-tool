@@ -1,0 +1,12 @@
+@import '../../App.css';
+
+.Logo {
+	font-family: var(--body-font);
+	
+}
+
+h1 {
+	color: #ffffff;
+	text-align: left;
+}
+

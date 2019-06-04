@@ -1,0 +1,10 @@
+@import '../../App.css';
+
+.Footer {
+	background-color: var(--dark-grey);
+	bottom: 0;
+	position: fixed;
+	height: 7vh;
+	width: 100%;
+}
+

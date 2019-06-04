@@ -1,0 +1,65 @@
+.AddTask {
+	padding: 3%;
+	padding-bottom: 0;
+}
+
+h2 {
+	text-align: left;
+	margin-top: 0;
+}
+
+.FormWrapper {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.FormRow {
+	display: flex;
+	justify-content: space-between;
+	padding: 3% 0%;
+}
+
+.FormRowTextArea {
+	display: flex;
+	flex-direction: column;
+	padding: 3% 0% 2% 0%;
+}
+
+.FormRow > label, .FormRowTextArea > label {
+	text-align: left;
+	font-size: 0.8em;
+}
+
+.FormRowTextArea > textarea {
+	margin-top: 1.8%;
+}
+
+.FormRow > select {
+	width: 50%;
+}
+
+
+.FormRow > input, .FormRowTextArea > textarea, .FormRow > select{
+	background-color: #D8D8D8;
+	border: solid 1px #979797;
+	border-radius: 4px;
+	font-size: 0.8em;
+	padding: 0.5%;
+}
+
+button {
+	background-color: #C7F228;
+	padding: 4% 10%;
+	border: black solid 1px;
+	border-radius: 6px;
+	font-size: 1em;
+	font-weight: 600;
+	margin-top: 10%;
+}
+
+.CancelBtn {
+	font-size: 0.7em;
+	margin-bottom: 1%;
+}
+

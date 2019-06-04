@@ -1,0 +1,15 @@
+@import '../../App.css';
+
+
+.ScrollingWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  height: 86vh;
+  margin-top: 8vh;
+
+}
+
+.ScrollingWrapper .Wrapper {
+    flex: 0 0 auto;
+}
