@@ -9,14 +9,7 @@ const RowHeaders = () => (
 	<React.Fragment>
 		<div className={classes.RowHeaders}>
 			<div><Resource name={""}/></div>
-			<WeeklyGrid>
-			    <div className={classes.DaysWrapper}>
-					<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-					<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-					<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-					<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-					<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-				</div>
+			<WeeklyGrid isDateShown={true}>
 			</WeeklyGrid>
 		</div>
 	</React.Fragment>

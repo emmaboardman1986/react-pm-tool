@@ -30,7 +30,7 @@ const DayDate = (props) => {
 		}
 		const styles = {
 			gridColumnStart: colStart,
-			gridColumnEnd: colEnd
+			gridColumnEnd: colEnd,
 		}
 		return styles;
 	};

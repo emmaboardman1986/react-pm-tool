@@ -10,8 +10,15 @@
 .Date p {
   background-color: transparent;
   font-size: 0.7em;
-
+  margin: 0;
+  margin-top: 13px;
 }
+
+@media (min-width: 992px) {
+	.Date p {
+	  margin-top: 10px;
+	}
+  }
 
 .Weekday {
 	height: var(--resource-row-height);

@@ -11,17 +11,7 @@ const Resource = (props) => {
 		return (
 			<div className={classes.Resource}>
 				<div><ResourceName name={props.name} job={props.job}/></div>
-				<WeeklyGrid tasks={props.tasks}>
-				   <div className={classes.DaysWrapper}>
-							<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-							<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-							<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-							<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-							<div className={classes.DayWrapper}><DayDate /><Hours /></div>
-					</div>
-				</WeeklyGrid>
-
-
+				<WeeklyGrid tasks={props.tasks} isDateShown={true} />
 			</div>
 			);
 

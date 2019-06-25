@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Task from '../../Task/Task';
 import DayDate from "../DayDate/DayDate";
 import classes from './WeeklyGrid.module.css';
 
-class WeeklyGrid extends Component {
+const WeeklyGrid = (props) =>  {
 
-	getCurrentDate() {
+	const getCurrentDate = () => {
 		return new Date();
 	}
-
-	getMonday() {
-		let currentDate = this.getCurrentDate(),
+	const getMonday = () => {
+		let currentDate = getCurrentDate(),
 			currentDay = currentDate.getDay(),
 			diff = currentDate.getDate() - currentDay + (currentDay == 0 ? -6 : 1),
 			monday = new Date(currentDate.setDate(diff));
 		return monday;
 	}
-	getWeeklyArray() {
-		let monday = this.getMonday(),
+	const getWeeklyArray = () => {
+		let monday = getMonday(),
 			currentWeek = [];
 		const months = [
 			"January",
@@ -43,7 +42,7 @@ class WeeklyGrid extends Component {
 				weekDays[i] +
 				" " +
 				tempDate.getDate() +
-				this.getDateOrdinal(tempDate.getDate()) +
+				getDateOrdinal(tempDate.getDate()) +
 				" " +
 				months[tempDate.getMonth()];
 			currentWeek.push(dateString);
@@ -51,7 +50,7 @@ class WeeklyGrid extends Component {
 		return currentWeek;
 	}
 
-	getDateOrdinal(dayOfMonth) {
+	const getDateOrdinal = (dayOfMonth) => {
 	if (dayOfMonth > 3 && dayOfMonth < 21) return "th";
 	switch (dayOfMonth % 10) {
 		case 1:
@@ -65,25 +64,17 @@ class WeeklyGrid extends Component {
 	}
 }
 
-returnCurrentWeek() {
-	const daysOfWeek = this.getWeeklyArray().map(day => {
+const returnCurrentWeek = () => {
+	const daysOfWeek = getWeeklyArray().map(day => {
 		const dayClass = day.replace(/ .*/,'') ;
 		console.log(dayClass)
-		return <DayDate key={day} className={dayClass}>{day}</DayDate>
+		return <DayDate key={day} className={dayClass}><p>{props.isDateShown ? day : '' }</p></DayDate>
 	})
 	return daysOfWeek;
-	// current
-
-	// for (let key in currentWeek){
-	// 	console.log(currentWeek[key]);
-	// 	return <DayDate key={currentWeek[key]} />
-	// 	// 
-	// }
-
 }
 
-returnTasks() {
-	const tasksArray = Object.values(this.props.tasks);
+const returnTasks = () => {
+	const tasksArray = Object.values(props.tasks);
 	console.log(tasksArray);
 	let tasks = tasksArray.map(task => {
 		let taskStyle = {
@@ -97,18 +88,14 @@ returnTasks() {
 	});
 	return tasks;
 }
-// );
 
-
-render() {
-	return (
+return (
 		<div className={classes.WeeklyGrid}>
-			{this.returnCurrentWeek()}
-			{this.props.tasks ? this.returnTasks() : null}
+			{returnCurrentWeek()}
+			{props.tasks ? returnTasks() : null}
 		</div>
 
 	);
-}
 
 }
 
