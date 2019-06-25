@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './DayDate.module.css';
-import generate from '@babel/generator';
+
 
 const DayDate = (props) => {
 	
@@ -27,10 +27,19 @@ const DayDate = (props) => {
 				colStart = "Fri0900";
 				colEnd = "Fri1700";
 				break;
+			default:
+				colStart = "Mon0900";
+				colEnd = "Mon1700";
+
+		}
+		let leftBorder;
+		if (props.className === "Monday"){
+			leftBorder = "1px var(--dark-grey) solid"
 		}
 		const styles = {
 			gridColumnStart: colStart,
 			gridColumnEnd: colEnd,
+			borderLeft: leftBorder
 		}
 		return styles;
 	};

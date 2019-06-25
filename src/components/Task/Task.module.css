@@ -6,12 +6,9 @@
 	margin-left: 5px;
 	margin-top: 5px;
 	border: 1px solid var(--dark-grey);
-  	box-shadow: 0.5px 1.5px 3px 0px var(--dark-grey); 
+	box-shadow: 0.5px 1.5px 3px 0px var(--dark-grey); 
+	height: 12vh;
   	/*height: 50px;*/
- }
-
- .Task:nth-child(odd){
- 	margin-right: 5px;
  }
 
 .Task .Title {

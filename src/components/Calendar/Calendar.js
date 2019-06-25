@@ -1,6 +1,6 @@
 import React from 'react';
 import RowHeaders from './RowHeaders/RowHeaders';
-import Resources from './Resources/Resources';
+import Resources from '../../containers/Resources/Resources';
 import classes from './Calendar.module.css';
 
 const Calendar = () => (

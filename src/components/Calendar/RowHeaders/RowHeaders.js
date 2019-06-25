@@ -1,7 +1,5 @@
 import React from 'react';
-import DayDate from './DayDate/DayDate';
-import Hours from './Hours/Hours';
-import Resource from '../Resources/Resource/ResourceName/ResourceName';
+import Resource from '../../Resource/ResourceName/ResourceName';
 import classes from './RowHeaders.module.css';
 import WeeklyGrid from '../WeeklyGrid/WeeklyGrid';
 

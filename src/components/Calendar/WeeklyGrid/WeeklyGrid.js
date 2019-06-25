@@ -11,7 +11,7 @@ const WeeklyGrid = (props) =>  {
 	const getMonday = () => {
 		let currentDate = getCurrentDate(),
 			currentDay = currentDate.getDay(),
-			diff = currentDate.getDate() - currentDay + (currentDay == 0 ? -6 : 1),
+			diff = currentDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1),
 			monday = new Date(currentDate.setDate(diff));
 		return monday;
 	}
@@ -67,27 +67,60 @@ const WeeklyGrid = (props) =>  {
 const returnCurrentWeek = () => {
 	const daysOfWeek = getWeeklyArray().map(day => {
 		const dayClass = day.replace(/ .*/,'') ;
-		console.log(dayClass)
 		return <DayDate key={day} className={dayClass}><p>{props.isDateShown ? day : '' }</p></DayDate>
 	})
 	return daysOfWeek;
 }
 
+const generateTaskClasses = (task) => {
+	let color;
+	switch (task.clientName) {
+	  case "Delos":
+		color = "#C6F400";
+		break;
+	  case "Shogun World":
+		color = "#F48A18";
+		break;
+	  case "Ford":
+		color = "#B087FF";
+		break;
+	  case "Logan":
+		color = "#1DA4C1";
+		break;
+	  default:
+		color = "#1DA4C1";
+		break;
+	}
+	let marginRight;
+	task.taskEndTime.includes(1700)
+	  ? (marginRight = "5px")
+	  : (marginRight = "0");
+	let dynamicStyles = {
+	  backgroundColor: color,
+	  gridColumnStart: task.taskStartTime,
+	  gridRowStart: "row1-start",
+	  gridRowEnd: "row1-end",
+	  gridColumnEnd: task.taskEndTime,
+	  marginRight: marginRight,
+	  zIndex: 2,
+	};
+	return dynamicStyles;
+  }
+
 const returnTasks = () => {
 	const tasksArray = Object.values(props.tasks);
-	console.log(tasksArray);
 	let tasks = tasksArray.map(task => {
-		let taskStyle = {
-			backgroundColor: task.color,
-			gridColumnStart: task.startDayTime,
-			gridColumnEnd: task.endDayTime
-		}
-		const title = task.title;
-		console.log(title);
-		return <Task key={task.title} title={task.title} style={taskStyle} />;
+		return (
+		<Task key={task.taskId} title={task.taskTitle} style={generateTaskClasses(task)}>
+				<p class="clientName">{ task.clientName }</p>
+				<p class="title">{ task.taskAffectedArea }</p>
+			
+		</Task>);
 	});
 	return tasks;
 }
+
+
 
 return (
 		<div className={classes.WeeklyGrid}>

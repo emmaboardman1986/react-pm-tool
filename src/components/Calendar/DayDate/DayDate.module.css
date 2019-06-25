@@ -1,10 +1,8 @@
 @import '../../../App.css';
 
 .Date {
-	height: 100%;
 	width: 40vw;
 	text-align: center;
-
 }
 
 .Date p {
@@ -21,10 +19,9 @@
   }
 
 .Weekday {
-	height: var(--resource-row-height);
+	height: 14vh;
 	border-right: 1px var(--dark-grey) solid;
 	grid-row-start: row1-start;
 	grid-row-end: row1-end;
-	z-index: 1
   }
   
