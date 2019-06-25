@@ -14,3 +14,21 @@
 	fill: white;
 
 }
+
+@media (min-width: 768px) {
+	.AddButton > img {
+	  margin: 2%;
+	}
+  }
+  
+  @media (min-width: 992px) {
+	.AddButton > img {
+	  margin: 1.7%;
+	}
+  }
+  
+  @media (min-width: 1200px) {
+	.AddButton > img {
+	  margin: 1%;
+	}
+  }
