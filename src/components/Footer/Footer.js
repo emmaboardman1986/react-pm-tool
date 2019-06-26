@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddButton from './AddButton/AddButton';
 import classes from './Footer.module.css';
 
 
-const Footer = () => (
+const Footer = (props) => (
 	<footer className={classes.Footer}>
-		<AddButton />
+		<AddButton clicked={props.clicked}/>
 	</footer>
+
 );
 
 export default Footer;

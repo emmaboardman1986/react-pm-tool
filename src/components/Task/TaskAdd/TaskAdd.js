@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './AddTask.module.css';
+import classes from './TaskAdd.module.css';
 
 const AddTask = () => (
 	<React.Fragment>
