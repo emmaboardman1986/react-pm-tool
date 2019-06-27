@@ -52,34 +52,34 @@ const taskDetail = (props) => {
     }
 
 
- 
+
     return (
-       
+
         <div className={classes.TaskDetail}>
             <div className={classes.TaskDetailTopBar} style={generateClientColourClasses(props.clientName)}>
-      <div>{ props.clientName }</div>
-            <div className={classes.TaskDetailTopBarCloseBtn} onClick={closeClicked}>x</div>
-    </div >
-    <div className={classes.TaskDetailTaskContent}>
-        <p className={classes.TaskDetailTaskContentTaskTitle}>
-            { props.taskTitle }
-            <span
-                className={classes.TaskDetailTaskContentImpact}
-                style={generateImpactColourClasses(props.taskImpact)}>
-            { props.taskImpact }
-            </span>
-      </p>
-    <dl>
-        <dt>Project</dt>
-        <dd>{ props.taskProjectTitle }</dd>
-        <dt>Error</dt>
-        <dd>{ props.taskError }</dd>
-        <dt>Scheduled for</dt>
-        <dd>{ props.taskStartTime } - { props.taskEndTime }</dd>
-    </dl>
-    </div >
-  </div >
-  );
+                <div>{props.clientName}</div>
+                <div className={classes.TaskDetailTopBarCloseBtn} onClick={closeClicked}>x</div>
+            </div >
+            <div className={classes.TaskDetailTaskContent}>
+                <p className={classes.TaskDetailTaskContentTaskTitle}>
+                    {props.taskTitle}
+                    <span
+                        className={classes.TaskDetailTaskContentImpact}
+                        style={generateImpactColourClasses(props.taskImpact)}>
+                        {props.taskImpact}
+                    </span>
+                </p>
+                <dl>
+                    <dt>Project</dt>
+                    <dd>{props.taskProjectTitle}</dd>
+                    <dt>Error</dt>
+                    <dd>{props.taskError}</dd>
+                    <dt>Scheduled for</dt>
+                    <dd>{props.taskStartTime} - {props.taskEndTime}</dd>
+                </dl>
+            </div >
+        </div >
+    );
 }
 
 export default taskDetail;

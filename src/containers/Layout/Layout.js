@@ -12,17 +12,18 @@ const Layout = () => {
 	const [showTaskAdd, setTaskAdd] = useState(false);
 	const [showTaskDetail, setTaskDetail] = useState(false);
 	const [selectedTask, setSelectedTask] = useState({
-		"taskId":"0",
-		"taskTitle":"No task was selected, please exit the screen and click a task",
-		"taskAffectedArea":"n/a",
-		"taskErroneousBehaviour":"n/a",
-		"taskExpectedBehaviour":"n/a",
-		"taskImpact":"n/a",
-		"taskStartTime":"n/a",
-		"taskEndTime":"n/a",
-		"taskEstimate":"n/a",
-		"projectTitle":"n/a",
-		"clientName":"n/a"}
+		"taskId": "0",
+		"taskTitle": "No task was selected, please exit the screen and click a task",
+		"taskAffectedArea": "n/a",
+		"taskErroneousBehaviour": "n/a",
+		"taskExpectedBehaviour": "n/a",
+		"taskImpact": "n/a",
+		"taskStartTime": "n/a",
+		"taskEndTime": "n/a",
+		"taskEstimate": "n/a",
+		"projectTitle": "n/a",
+		"clientName": "n/a"
+	}
 	);
 
 	const handleTaskAdd = () => {
@@ -47,29 +48,29 @@ const Layout = () => {
 
 	return (
 		<React.Fragment>
-			<Modal 
-				show={showTaskAdd} 
+			<Modal
+				show={showTaskAdd}
 				modalClosed={handleTaskAdd}>
 				<TaskAdd />
 			</Modal>
-			<Modal 
-				show={showTaskDetail} 
+			<Modal
+				show={showTaskDetail}
 				modalClosed={handleTaskDetail}
-				>
+			>
 				<TaskDetail
-						taskTitle={selectedTask.taskTitle}
-						taskClientName={selectedTask.clientName}
-						taskImpact={selectedTask.taskImpact}
-						taskProject={selectedTask.taskProjectTitle}
-						taskError={selectedTask.taskErroneousBehaviour}
-						taskStartTime={selectedTask.taskStartTime}
-						taskEndTime={selectedTask.taskEndTime} />
+					taskTitle={selectedTask.taskTitle}
+					taskClientName={selectedTask.clientName}
+					taskImpact={selectedTask.taskImpact}
+					taskProject={selectedTask.taskProjectTitle}
+					taskError={selectedTask.taskErroneousBehaviour}
+					taskStartTime={selectedTask.taskStartTime}
+					taskEndTime={selectedTask.taskEndTime} />
 			</Modal>
 			<Header />
-			<Calendar taskClicked={clickTask}/>
-			<Footer clicked={handleTaskAdd}/>
+			<Calendar taskClicked={clickTask} />
+			<Footer clicked={handleTaskAdd} />
 		</React.Fragment>
-		);
+	);
 
 }
 
