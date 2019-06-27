@@ -192,7 +192,8 @@ const Layout = () => {
 					projectList={projectList}
 					resourceList={resourceList}
 					handleSchedulePlacement={fetchResourceSchedule}
-					availableTimes={availability}/>
+					availableTimes={availability}
+					closeModal={handleTaskAdd}/>
 			</Modal>
 			<Modal
 				show={showTaskDetail}

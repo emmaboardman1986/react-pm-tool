@@ -19,7 +19,7 @@ const AddTask = (props) => {
 		taskRecentChanges: ''
 	})
 
-	useEffect(() =>{
+	useEffect(() => {
 		setFormInput({
 			...formInput,
 			taskStartTime: props.availableTimes.startTime,
@@ -27,7 +27,7 @@ const AddTask = (props) => {
 		  });
 	}, [props.availableTimes]);
 
-	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+	// const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 	const handleInputChange = (event) => {
 		const target = event.target;
@@ -88,6 +88,7 @@ const AddTask = (props) => {
 		}
 	}
 
+
 	const handleSubmit = (event) => {
 		console.log("inside submit: " + formInput);
 		event.preventDefault()
@@ -95,10 +96,11 @@ const AddTask = (props) => {
         .post("http://40414669.wdd.napier.ac.uk/inc/postNewTask.php", formInput)
         .then(response => {
           console.log(response);
-          setIsFormSubmitted(!isFormSubmitted);
+		  props.closeModal();
         })
         .catch(error => console.log(error));
 	}
+
 
 	return (
 	<React.Fragment>
@@ -197,7 +199,7 @@ const AddTask = (props) => {
 			</li>
 		</ul>
 		<button type="submit" className={classes.AddTaskBtn}>Add Task</button>
-		<p className={classes.CancelBtn}>Cancel</p>
+		<p className={classes.CancelBtn} onClick={props.closeModal}>Cancel</p>
 	</form>
 		
     </div>
