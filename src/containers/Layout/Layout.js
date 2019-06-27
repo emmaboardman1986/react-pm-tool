@@ -28,7 +28,10 @@ const Layout = () => {
 	const [projectList, setProjectList] = useState([]);
 	const [resourceList, setResourceList] = useState([]);
 	const [resourceSchedule, setResourceSchedule] = useState("resourceSchedule");
-	const [availability, setAvailability] = useState("availability");
+	const [availability, setAvailability] = useState({
+		startTime: '',
+		endTime: ''
+	});
 	const [resourceAndEstimate, setResourceAndEstimate] = useState("r and e");
 
 	useEffect(() => {
@@ -46,9 +49,7 @@ const Layout = () => {
 	}, [resourceSchedule, resourceAndEstimate]);
 
 	const handleTaskAdd = () => {
-		let toggle = !showTaskAdd;
-		setTaskAdd(toggle);
-		return null;
+		setTaskAdd(!showTaskAdd);
 	}
 
 	const clickTask = (task) => {

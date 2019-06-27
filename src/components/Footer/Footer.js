@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddButton from './AddButton/AddButton';
 import classes from './Footer.module.css';
 

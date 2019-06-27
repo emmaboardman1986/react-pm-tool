@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './TaskAdd.module.css';
+import axios from 'axios';
 
 const AddTask = (props) => {
 
@@ -12,10 +13,21 @@ const AddTask = (props) => {
 		taskImpact: '',
 		taskTimeNoticed: '',
 		taskEstimate: '',
-		taskStartTime: '',
-		taskEndTime: '',
-		resourceId: ''
+		taskStartTime: props.availableTimes.startTime,
+		taskEndTime: props.availableTimes.endTime,
+		taskResource: '',
+		taskRecentChanges: ''
 	})
+
+	useEffect(() =>{
+		setFormInput({
+			...formInput,
+			taskStartTime: props.availableTimes.startTime,
+			taskEndTime: props.availableTimes.endTime
+		  });
+	}, [props.availableTimes]);
+
+	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 	const handleInputChange = (event) => {
 		const target = event.target;
@@ -30,10 +42,6 @@ const AddTask = (props) => {
 		console.log(formInput);
 	}
 
-	const handleSchedulePlacement = (scheduleObj) => {
-		console.log(scheduleObj);
-	}
-
 	let projectList = props.projectList;
 	const generatedProjectOptions = projectList.map((project) => 
 			<option 
@@ -42,7 +50,7 @@ const AddTask = (props) => {
 				value={project.projectId}
 				name="projectId" 
 			>
-				{ project.clientName + ": " + project.projectName }
+				{ project.clientName + ": " + project.projectName}
 				</option>
 		);
 
@@ -51,17 +59,53 @@ const AddTask = (props) => {
 		<option id={taskImpact} key={taskImpact} value={taskImpact}>{taskImpact}</option>
 	)
 
-	const resourceOptions = props.resourceList;
+	let resourceOptions = props.resourceList;
 	const generatedResourceOptions = resourceOptions.map((resource) =>
 		<option id={resource.resourceId} value={resource.resourceId}>{resource.resourceName}</option>
 	)
+
+	const generateTimeSlots = (availableTimes) => {
+		console.log("DO I RUN");
+		if (availableTimes.endTime === ''){
+			return <p>Requires resource and estimate input</p>
+		} else {
+			return (
+				<div className={classes.Timeslots}>
+				<input
+				  className={classes.TimeSlots}
+				  readOnly
+				  value={availableTimes.startTime}
+				  placeholder={availableTimes.startTime}
+				/> -
+				<input
+				  className={classes.TimeSlots}
+				  readOnly
+				  value={availableTimes.endTime}
+				  placeholder={availableTimes.endTime}
+				/>
+			  </div>
+			);
+		}
+	}
+
+	const handleSubmit = (event) => {
+		console.log("inside submit: " + formInput);
+		event.preventDefault()
+		axios
+        .post("http://40414669.wdd.napier.ac.uk/inc/postNewTask.php", formInput)
+        .then(response => {
+          console.log(response);
+          setIsFormSubmitted(!isFormSubmitted);
+        })
+        .catch(error => console.log(error));
+	}
 
 	return (
 	<React.Fragment>
 	<div className={classes.AddTask}>
 	<h2>Add New Task</h2>
 
-	<form>
+	<form onSubmit={handleSubmit}>
 		<ul className={classes.FormWrapper}>
 			<li className={classes.FormRow}>
 				<label htmlFor="projectId">Project</label>
@@ -103,7 +147,7 @@ const AddTask = (props) => {
 			<li className={classes.FormRow}>
 				<label htmlFor="taskImpact">Impact on business</label>
 				<select 
-					name="taskimpact" 
+					name="taskImpact" 
 					onChange={handleInputChange} 
 					value={formInput.taskImpact}
 					required>
@@ -121,12 +165,16 @@ const AddTask = (props) => {
 			</li>
 			<li className={classes.FormRow}>
 				<label htmlFor="taskRecentChanges">Recent Changes</label>
-				<input type="text" id="taskRecentChanges" name="taskTimeNoticed"/>
+				<input 
+					type="text" 
+					id="taskRecentChanges" 
+					name="taskRecentChanges"
+					/>
 			</li>
 				<li className={classes.FormRow}>
 				<label htmlFor="resourceId">Resource</label>
 					<select 
-						name="resourceId" 
+						name="taskResource" 
 						onChange={handleInputChange} 
 						value={formInput.resourceId}
 						required>
@@ -140,22 +188,18 @@ const AddTask = (props) => {
 					id="taskEstimate" 
 					name="taskEstimate"
 					onChange={handleInputChange}
-					onBlur={() => {props.handleSchedulePlacement({resourceId: formInput.resourceId, taskEstimate: formInput.taskEstimate})}}
+					onBlur={() => {props.handleSchedulePlacement({resourceId: formInput.taskResource, taskEstimate: formInput.taskEstimate})}}
 					required/>
 			</li>
 			<li className={classes.FormRow}>
-				<label htmlFor="taskSchedule">Schedule Time Slot</label>
-					<select>
-						<option value="timenoselection"></option>
-						<option value="Mon9000Mon1200">Monday 1st June 09:00 - 12:00</option>
-						<option value="Wed1400Wed1700">Wednesday 3rd June 14:00 - 17:00</option>
-						<option value="Thurs9000Thurs1200">Thursday 4th June 09:00 - 12:00</option>
-					</select>
+				<label htmlFor="taskSchedule">First Available Time Slot</label>
+					{generateTimeSlots(props.availableTimes)}
 			</li>
 		</ul>
-	</form>
-		<button className={classes.AddTaskBtn}>Add Task</button>
+		<button type="submit" className={classes.AddTaskBtn}>Add Task</button>
 		<p className={classes.CancelBtn}>Cancel</p>
+	</form>
+		
     </div>
 	</React.Fragment>
 

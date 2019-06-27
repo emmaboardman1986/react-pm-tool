@@ -53,6 +53,22 @@ p {
 	padding: 0.5%;
 }
 
+.Timeslots {
+	display: flex;
+	justify-content: flex-end;
+  }
+  
+.Timeslots > input {
+	width: 35%;
+	text-align: center;
+	background-color: transparent;
+	border: 0;
+	font-weight: 600;
+  }
+.Timeslots > input:focus {
+	outline: none;
+  }
+
 button {
 	background-color: #C7F228;
 	padding: 4% 10%;
