@@ -9,7 +9,10 @@ const Resource = (props) => {
 		return (
 			<div className={classes.Resource}>
 				<div><ResourceName name={props.name} job={props.job}/></div>
-				<WeeklyGrid tasks={props.tasks} isDateShown={false} />
+				<WeeklyGrid 
+					tasks={props.tasks} 
+					isDateShown={false} 
+					taskClicked={props.taskClicked} />
 			</div>
 			);
 

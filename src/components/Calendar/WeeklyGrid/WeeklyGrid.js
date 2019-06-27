@@ -111,7 +111,10 @@ const returnTasks = () => {
 	const tasksArray = Object.values(props.tasks);
 	let tasks = tasksArray.map(task => {
 		return (
-		<Task key={task.taskId} style={generateTaskClasses(task) }>
+		<Task 
+			key={task.taskId} 
+			style={generateTaskClasses(task)}
+			taskClicked={() => {props.taskClicked(task)}}>
 			<p className={classes.ClientName}>{task.clientName}</p>
 			<p className={classes.Title}>{task.taskTitle}</p>
 		</Task>)

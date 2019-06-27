@@ -8,6 +8,11 @@ h2 {
 	margin-top: 0;
 }
 
+p {
+	font-size: 0.7em;
+	text-align: center;
+}
+
 .FormWrapper {
 	list-style-type: none;
 	padding: 0;

@@ -3,11 +3,12 @@ import Resource from '../../components/Resource/Resource';
 import classes from './Resources.module.css';
 import { RepositoryFactory } from "../../utils/RepositoryFactory";
 import axios from "axios";
+import { tsPropertySignature } from '@babel/types';
 const ResourceRepository = RepositoryFactory.get("resources");
 const TaskRepository = RepositoryFactory.get("tasks");
 
 
-const Resources = () => {
+const Resources = (props) => {
 	
 	const [resourceList, setResourceList] = useState([]);
 
@@ -22,9 +23,15 @@ const Resources = () => {
 		}
 	}, []);
 
-	let resourcesComponents = resourceList.map(resource => {
-		return (<Resource key={resource.resourceId} name={resource.resourceName} job={resource.resourceJobTitle} tasks={resource.tasks} />);	
 
+	let resourcesComponents = resourceList.map(resource => {
+		return (<Resource 
+					key={resource.resourceId} 
+					name={resource.resourceName} 
+					job={resource.resourceJobTitle} 
+					tasks={resource.tasks}
+					taskClicked={props.taskClicked}
+					 />);	
 	})
 
     return (
