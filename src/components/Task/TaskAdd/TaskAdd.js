@@ -51,6 +51,7 @@ const AddTask = props => {
     >
       {project.clientName + ": " + project.projectName}
     </option>
+
   ));
 
   const impactOptions = ["Low", "Medium", "High"];
@@ -68,7 +69,6 @@ const AddTask = props => {
   ));
 
   const generateTimeSlots = availableTimes => {
-    console.log("DO I RUN");
     if (availableTimes.endTime === "") {
       return <p>Requires resource and estimate input</p>;
     } else {
@@ -88,12 +88,12 @@ const AddTask = props => {
             placeholder={availableTimes.endTime}
           />
         </div>
-      );
-    }
+	  );
+	}
   };
 
   const handleSubmit = event => {
-    console.log("inside submit: " + formInput);
+    var t0 = performance.now();
     event.preventDefault();
     axios
       .post("http://40414669.wdd.napier.ac.uk/inc/postNewTask.php", formInput)
@@ -101,7 +101,11 @@ const AddTask = props => {
         console.log(response);
         props.closeModal();
       })
-      .catch(error => console.log(error));
+	  .catch(error => console.log(error));
+	  var t1 = performance.now();
+      console.log(
+        "Call to handleSubmit took " + (t1 - t0) + " milliseconds."
+      );
   };
 
   return (

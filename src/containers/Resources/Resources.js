@@ -13,14 +13,20 @@ const Resources = (props) => {
 	const [resourceList, setResourceList] = useState([]);
 
 	useEffect(() => {
+		var t0 = performance.now();
 		axios.get('http://40414669.wdd.napier.ac.uk/inc/readTaskDetails.php')
 		.then(result => {
 		console.log(result);
 		setResourceList(result.data);
 		});
+		var t1 = performance.now();
+		console.log(
+		  "Call to useEffect for readTaskDetails took " + (t1 - t0) + " milliseconds."
+		);
 		return () => {
 			setResourceList([]);
 		}
+		
 	}, []);
 
 
