@@ -3,7 +3,7 @@ import classes from './Task.module.css';
 
 const Task = (props) => (
 
-	<div style={props.style} className={classes.Task} onClick={props.taskClicked}>
+	<div style={props.style} className={classes.Task} onClick={props.taskClicked} data-cy="task">
 	{props.children}
 	</div>
 );

@@ -1,6 +1,11 @@
 .TaskDetail {
     text-align: left;
   }
+
+  p {
+    font-size: 1em;
+    text-align: left;
+  }
   
   .TaskDetailTopBar {
     padding: 2%;
@@ -54,6 +59,7 @@
     border: var(--dark-grey) solid 0.5px;
     display: block;
     margin-top: 3%;
+    margin-left: 3%;
   }
   
   @media (min-width: 500px) {

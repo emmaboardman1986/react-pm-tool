@@ -47,21 +47,15 @@ const taskDetail = (props) => {
         return backgroundColor;
     }
 
-    const closeClicked = () => {
-        console.log("close clicked");
-    }
-
-
-
     return (
 
-        <div className={classes.TaskDetail}>
+        <div className={classes.TaskDetail} data-cy="task-detail">
             <div className={classes.TaskDetailTopBar} style={generateClientColourClasses(props.clientName)}>
-                <div>{props.clientName}</div>
-                <div className={classes.TaskDetailTopBarCloseBtn} onClick={closeClicked}>x</div>
+                <div>{props.taskClientName}</div>
+                <div className={classes.TaskDetailTopBarCloseBtn} onClick={props.closeModal}>x</div>
             </div >
             <div className={classes.TaskDetailTaskContent}>
-                <p className={classes.TaskDetailTaskContentTaskTitle}>
+                <p className={classes.TaskDetailTaskContentTaskTitle} data-cy="task-title">
                     {props.taskTitle}
                     <span
                         className={classes.TaskDetailTaskContentImpact}

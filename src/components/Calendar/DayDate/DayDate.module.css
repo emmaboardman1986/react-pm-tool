@@ -10,9 +10,14 @@
   font-size: 0.7em;
   margin: 0;
   margin-top: 13px;
+  text-align: center;
 }
 
 @media (min-width: 992px) {
+
+	.Date {
+		width: 25vw;
+	}
 	.Date p {
 	  margin-top: 10px;
 	}

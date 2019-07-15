@@ -115,8 +115,8 @@ const returnTasks = () => {
 			key={task.taskId} 
 			style={generateTaskClasses(task)}
 			taskClicked={() => {props.taskClicked(task)}}>
-			<p className={classes.ClientName}>{task.clientName}</p>
-			<p className={classes.Title}>{task.taskTitle}</p>
+			<p className={classes.ClientName}>{task.taskEstimate > 3 ? task.clientName : task.clientName.substring(0,2) + ".."}</p>
+			<p className={classes.Title}>{task.taskEstimate > 3 ? task.taskTitle :  "( ... )"}</p>
 		</Task>)
 	});
 	return tasks;

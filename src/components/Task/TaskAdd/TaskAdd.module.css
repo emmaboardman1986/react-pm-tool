@@ -1,6 +1,7 @@
 .AddTask {
 	padding: 3%;
 	padding-bottom: 0;
+	height: 100%;
 }
 
 h2 {
@@ -11,6 +12,13 @@ h2 {
 p {
 	font-size: 0.7em;
 	text-align: center;
+}
+
+form {
+	height: 100%;
+}
+.DefaultMessage {
+	font-size: 0.6em;
 }
 
 .FormWrapper {
@@ -34,6 +42,7 @@ p {
 .FormRow > label, .FormRowTextArea > label {
 	text-align: left;
 	font-size: 0.8em;
+	width: 50%;
 }
 
 .FormRowTextArea > textarea {
@@ -83,4 +92,54 @@ button {
 	font-size: 0.7em;
 	margin-bottom: 1%;
 }
+
+@media (min-width: 600px) {
+	form {
+	  display: flex;
+	  flex-direction: column;
+	}
+	.AddTask {
+	  width: 100%;
+	  padding: 0;
+	}
+	form > .TopOnDesktop {
+	  display: flex;
+	}
+	.FormRow {
+	  flex-direction: column;
+	  width: 100%;
+	  padding-top: 1.5%;
+	}
+	.TopOnDesktop > .LeftOnDesktop {
+	  width: 50%;
+	  margin-right: 2.5%;
+	}
+	.TopOnDesktop > .RightOnDesktop {
+	  width: 50%;
+	  margin-left: 2.5%;
+	}
+	.FormRow > input,
+	.FormRow > textarea,
+	.FormRow > select {
+	  width: 85%;
+	  margin-top: 2%;
+	  margin-bottom: 0;
+	  padding: 1.5%;
+	}
+	.FormRow > label {
+	  width: 100%;
+	  margin-top: 0;
+	}
+	p {
+	  text-align: left;
+	}
+	button {
+	  padding: 2% 5%;
+	  margin-top: 1.5%;
+	  margin-bottom: 1%;
+	}
+	.CancelBtn {
+	  margin-bottom: 0;
+	}
+  }
 
