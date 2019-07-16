@@ -6,25 +6,11 @@ import Modal from "../../components/UI/Modal/Modal";
 import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
 import TaskDetail from "../../components/Task/TaskDetail/TaskDetail";
 import axios from "axios";
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
-const Layout = (props) => {
+const Layout = props => {
   const [showTaskAdd, setTaskAdd] = useState(false);
-  const [showTaskDetail, setTaskDetail] = useState(false);
-  const [selectedTask, setSelectedTask] = useState({
-    taskId: "0",
-    taskTitle: "No task was selected, please exit the screen and click a task",
-    taskAffectedArea: "n/a",
-    taskErroneousBehaviour: "n/a",
-    taskExpectedBehaviour: "n/a",
-    taskImpact: "n/a",
-    taskStartTime: "n/a",
-    taskEndTime: "n/a",
-    taskEstimate: "n/a",
-    projectTitle: "n/a",
-    clientName: "n/a"
-  });
 
   useEffect(() => {
     props.onFetchTaskOptions();
@@ -38,16 +24,6 @@ const Layout = (props) => {
   const handleTaskAdd = () => {
     setTaskAdd(!showTaskAdd);
   };
-
-  // const clickTask = task => {
-  //   setSelectedTask(task);
-  //   handleTaskDetail();
-  // };
-
-  // const handleTaskDetail = () => {
-  //   let toggle = !showTaskDetail;
-  //   setTaskDetail(toggle);
-  // };
 
   const handleSchedulePlacement = resourceAndEstimate => {
     var t0 = performance.now();
@@ -159,7 +135,7 @@ const Layout = (props) => {
       </Modal>
       <Modal
         show={props.showTaskDetail}
-        // modalClosed={handleTaskDetail}
+        modalClosed={props.onCloseTaskDetailModal}
         role="taskDetail"
       >
         <TaskDetail
@@ -170,13 +146,11 @@ const Layout = (props) => {
           taskError={props.selectedTask.taskErroneousBehaviour}
           taskStartTime={props.selectedTask.taskStartTime}
           taskEndTime={props.selectedTask.taskEndTime}
-          // closeModal={handleTaskDetail}
+          closeModal={props.onCloseTaskDetailModal}
         />
       </Modal>
       <Header />
-      <Calendar 
-      // taskClicked={clickTask} 
-      />
+      <Calendar />
       <Footer clicked={handleTaskAdd} />
     </React.Fragment>
   );
@@ -185,7 +159,7 @@ const Layout = (props) => {
 const resourceAndEstimate = {
   resourceId: 1,
   taskEstimate: 4
-}
+};
 
 const mapStateToProps = state => {
   return {
@@ -194,15 +168,21 @@ const mapStateToProps = state => {
     resourceSchedule: state.resourceReducer.resourceSchedule,
     selectedTask: state.taskReducer.selectedTask,
     showTaskDetail: state.taskReducer.showTaskDetail
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions()),
-    onFetchResourceSchedule: (resourceAndEstimate) => dispatch(actions.fetchResourceSchedule(resourceAndEstimate)),
-    onHandleResourceAvailability: (availability) => dispatch(actions.handleSchedulePlacement(availability))
-  }
-}
+    onFetchResourceSchedule: resourceAndEstimate =>
+      dispatch(actions.fetchResourceSchedule(resourceAndEstimate)),
+    onHandleResourceAvailability: availability =>
+      dispatch(actions.handleSchedulePlacement(availability)),
+    onCloseTaskDetailModal: () => dispatch(actions.hideTaskDetails())
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Layout);

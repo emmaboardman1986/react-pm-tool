@@ -9,7 +9,7 @@ const Calendar = (props) => (
 	<div className={classes.ScrollingWrapper}>
 		<div className={classes.Wrapper}>
 			<RowHeaders />
-			<Resources taskClicked={props.taskClicked}/>
+			<Resources/>
 		</div>
 	
 	</div>

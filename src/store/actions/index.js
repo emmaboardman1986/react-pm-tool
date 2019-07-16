@@ -1,7 +1,8 @@
 export {
     fetchTasks,
     fetchTaskOptions,
-    showTaskDetails
+    showTaskDetails,
+    hideTaskDetails
 } from './task'
 
 export {

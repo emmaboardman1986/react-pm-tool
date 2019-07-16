@@ -44,10 +44,15 @@ const taskReducer = (state = initialState, action) => {
         selectedTask: action.selectedTask,
         showTaskDetail: true
       })
+    case actionTypes.HIDE_TASK_DETAILS:
+      return updateObject(state, {
+        showTaskDetail: false
+      })
     default:
       return state;
   }
 };
+
 
 const handleTaskPresets = projectList => {
   let projectsArray = projectList.reduce(function(formPresetsArray, clientObj) {

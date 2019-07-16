@@ -22,7 +22,6 @@ const Resources = (props) => {
 					name={resource.resourceName} 
 					job={resource.resourceJobTitle} 
 					tasks={resource.tasks}
-					taskClicked={props.taskClicked}
 					 />);	
 	})
 

@@ -89,3 +89,9 @@ export const showTaskDetails = (task) => {
     selectedTask: task
   }
 }
+
+export const hideTaskDetails = () => {
+  return {
+    type: actionTypes.HIDE_TASK_DETAILS
+  }
+}
