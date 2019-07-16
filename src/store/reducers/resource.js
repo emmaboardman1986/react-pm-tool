@@ -4,7 +4,7 @@ import { updateObject } from "../utility/utility";
 const initialState = {
   resourceSchedule: [],
   loading: false,
-  
+  availability: {}
 };
 
 const resourceReducer = (state = initialState, action) => {
@@ -21,6 +21,10 @@ const resourceReducer = (state = initialState, action) => {
       return updateObject(state, {
           loading: false
       })
+    case actionTypes.HANDLE_SCHEDULE_PLACEMENT:
+        return updateObject(state, {
+            availability: action.availability
+        })
     default:
         return state
   }

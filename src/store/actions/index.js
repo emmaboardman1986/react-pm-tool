@@ -4,5 +4,6 @@ export {
 } from './task'
 
 export {
-    fetchResourceSchedule
+    fetchResourceSchedule,
+    handleSchedulePlacement
 } from './resource'

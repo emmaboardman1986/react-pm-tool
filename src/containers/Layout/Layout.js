@@ -25,14 +25,11 @@ const Layout = (props) => {
     projectTitle: "n/a",
     clientName: "n/a"
   });
-  // const [projectList, setProjectList] = useState([]);
-  // const [resourceList, setResourceList] = useState([]);
-  const [resourceSchedule, setResourceSchedule] = useState("resourceSchedule");
+
   const [availability, setAvailability] = useState({
     startTime: "",
     endTime: ""
   });
-  const [resourceAndEstimate, setResourceAndEstimate] = useState("r and e");
 
   useEffect(() => {
     props.onFetchTaskOptions();
@@ -41,7 +38,7 @@ const Layout = (props) => {
   useEffect(() => {
     handleSchedulePlacement(resourceAndEstimate);
     console.log(resourceAndEstimate);
-  }, [resourceSchedule, resourceAndEstimate]);
+  }, [props.resourceSchedule, resourceAndEstimate]);
 
   const handleTaskAdd = () => {
     setTaskAdd(!showTaskAdd);
@@ -57,13 +54,10 @@ const Layout = (props) => {
     setTaskDetail(toggle);
   };
 
-  const fetchResourceSchedule = resourceAndEstimate => {
-
-  };
 
   const handleSchedulePlacement = resourceAndEstimate => {
     var t0 = performance.now();
-    console.log("resource schedule: " + resourceSchedule);
+    console.log("resource schedule: " + props.resourceSchedule);
     const weeklyAvailability = Array(45).fill(true);
     const weeklyTimeSlots = [
       "Mon0900",
@@ -112,10 +106,10 @@ const Layout = (props) => {
       "Fri1600",
       "Fri1700"
     ];
-    if (resourceSchedule.length > 0) {
-      for (let n = 0; n < resourceSchedule.length; n++) {
-        const startTime = resourceSchedule[n].taskStartTime;
-        const estimatedTime = resourceSchedule[n].taskEstimate;
+    if (props.resourceSchedule.length > 0) {
+      for (let n = 0; n < props.resourceSchedule.length; n++) {
+        const startTime = props.resourceSchedule[n].taskStartTime;
+        const estimatedTime = props.resourceSchedule[n].taskEstimate;
         for (let i = 0; i < weeklyTimeSlots.length; i++) {
           if (weeklyTimeSlots[i] == startTime) {
             for (let j = 0; j < estimatedTime; j++) {
@@ -134,7 +128,7 @@ const Layout = (props) => {
     const endTime =
       parseInt(indexOfFirstAvailability) +
       parseInt(resourceAndEstimate.taskEstimate);
-    setAvailability({
+    props.onHandleResourceAvailability({
       startTime: weeklyTimeSlots[indexOfFirstAvailability],
       endTime: weeklyTimeSlots[endTime]
     });
@@ -200,14 +194,16 @@ const resourceAndEstimate = {
 const mapStateToProps = state => {
   return {
     projectList: state.taskReducer.projectList,
-    resourceList: state.taskReducer.resourceList
+    resourceList: state.taskReducer.resourceList,
+    resourceSchedule: state.resourceReducer.resourceSchedule
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions()),
-    onFetchResourceSchedule: () => dispatch(actions.fetchResourceSchedule(resourceAndEstimate))
+    onFetchResourceSchedule: (resourceAndEstimate) => dispatch(actions.fetchResourceSchedule(resourceAndEstimate)),
+    onHandleResourceAvailability: (availability) => dispatch(actions.handleSchedulePlacement(availability))
   }
 }
 

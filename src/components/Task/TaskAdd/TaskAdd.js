@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classes from "./TaskAdd.module.css";
 import axios from "axios";
+import { connect } from "react-redux";
+import * as actions from '../../../store/actions/index';
 
 const AddTask = props => {
   const [formInput, setFormInput] = useState({
@@ -259,4 +261,14 @@ const AddTask = props => {
     </React.Fragment>
   );
 };
-export default AddTask;
+
+const mapStateToProps = state => {
+  return {
+    availableTimes: state.resourceReducer.availability
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(AddTask);

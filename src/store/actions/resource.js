@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
-import { updateObject } from "../utility/utility";
 
 export const fetchResourceScheduleStart = () => {
   return {
@@ -43,3 +42,11 @@ export const fetchResourceSchedule = resourceAndEstimate => {
     );
   };
 };
+
+
+export const handleSchedulePlacement = (availability) => {
+    return {
+    type: actionTypes.HANDLE_SCHEDULE_PLACEMENT,
+    availability: availability
+    }
+}
