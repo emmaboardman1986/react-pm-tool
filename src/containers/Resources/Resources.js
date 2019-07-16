@@ -16,17 +16,15 @@ const Resources = (props) => {
 		props.onFetchTasks();
 	}, [])
 
-	let resourcesComponents = null
-	
-	// props.resourceList.map(resource => {
-	// 	return (<Resource 
-	// 				key={resource.resourceId} 
-	// 				name={resource.resourceName} 
-	// 				job={resource.resourceJobTitle} 
-	// 				tasks={resource.tasks}
-	// 				taskClicked={props.taskClicked}
-	// 				 />);	
-	// })
+	let resourcesComponents = props.resourceList.map(resource => {
+		return (<Resource 
+					key={resource.resourceId} 
+					name={resource.resourceName} 
+					job={resource.resourceJobTitle} 
+					tasks={resource.tasks}
+					taskClicked={props.taskClicked}
+					 />);	
+	})
 
     return (
 		<div className={classes.Resources}>

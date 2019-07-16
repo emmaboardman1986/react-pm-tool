@@ -58,18 +58,7 @@ const Layout = (props) => {
   };
 
   const fetchResourceSchedule = resourceAndEstimate => {
-    var t0 = performance.now();
-    let url =
-      "http://40414669.wdd.napier.ac.uk/inc/readResourceSchedule.php/?id=" +
-      resourceAndEstimate.resourceId;
-    axios.get(url).then(result => {
-      setResourceSchedule(result.data);
-      setResourceAndEstimate(resourceAndEstimate);
-    });
-    var t1 = performance.now();
-    console.log(
-      "Call to fetchResourceSchedule took " + (t1 - t0) + " milliseconds."
-    );
+
   };
 
   const handleSchedulePlacement = resourceAndEstimate => {
@@ -175,7 +164,7 @@ const Layout = (props) => {
         <TaskAdd
           projectList={props.projectList}
           resourceList={props.resourceList}
-          handleSchedulePlacement={fetchResourceSchedule}
+          handleSchedulePlacement={props.onFetchResourceSchedule}
           availableTimes={availability}
           closeModal={handleTaskAdd}
         />
@@ -203,6 +192,11 @@ const Layout = (props) => {
   );
 };
 
+const resourceAndEstimate = {
+  resourceId: 1,
+  taskEstimate: 4
+}
+
 const mapStateToProps = state => {
   return {
     projectList: state.taskReducer.projectList,
@@ -212,7 +206,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions())
+    onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions()),
+    onFetchResourceSchedule: () => dispatch(actions.fetchResourceSchedule(resourceAndEstimate))
   }
 }
 

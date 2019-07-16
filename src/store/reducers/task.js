@@ -22,7 +22,6 @@ const taskReducer = (state = initialState, action) => {
     case actionTypes.FETCH_TASK_OPTIONS_SUCCESS:
       const updatedProjectList = handleTaskPresets(action.data.clientProjects);
       return updateObject(state, {
-        data: action.data,
         projectList: updatedProjectList,
         resourceList: action.data.resources
       });

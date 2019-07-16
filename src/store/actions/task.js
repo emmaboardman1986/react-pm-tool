@@ -54,8 +54,6 @@ export const fetchTaskOptionsStart = () => {
     return {
       type: actionTypes.FETCH_TASK_OPTIONS_SUCCESS,
       data: tasks
-      // projectList: tasks["clientProjects"],
-      // resourceList: tasks["resources"]
     };
   };
   
@@ -73,7 +71,6 @@ export const fetchTaskOptions = () => {
     axios
       .get("http://40414669.wdd.napier.ac.uk/inc/readAddTaskOptions.php")
       .then(result => {
-        console.log("FTO: ", result.data)
         dispatch(fetchTaskOptionsSuccess(result.data))
       })
       .catch(error => {
