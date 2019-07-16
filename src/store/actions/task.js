@@ -82,3 +82,10 @@ export const fetchTaskOptions = () => {
     );
   };
 };
+
+export const showTaskDetails = (task) => {
+  return {
+    type: actionTypes.SHOW_TASK_DETAILS,
+    selectedTask: task
+  }
+}

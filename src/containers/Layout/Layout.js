@@ -26,11 +26,6 @@ const Layout = (props) => {
     clientName: "n/a"
   });
 
-  const [availability, setAvailability] = useState({
-    startTime: "",
-    endTime: ""
-  });
-
   useEffect(() => {
     props.onFetchTaskOptions();
   }, []);
@@ -44,16 +39,15 @@ const Layout = (props) => {
     setTaskAdd(!showTaskAdd);
   };
 
-  const clickTask = task => {
-    setSelectedTask(task);
-    handleTaskDetail();
-  };
+  // const clickTask = task => {
+  //   setSelectedTask(task);
+  //   handleTaskDetail();
+  // };
 
-  const handleTaskDetail = () => {
-    let toggle = !showTaskDetail;
-    setTaskDetail(toggle);
-  };
-
+  // const handleTaskDetail = () => {
+  //   let toggle = !showTaskDetail;
+  //   setTaskDetail(toggle);
+  // };
 
   const handleSchedulePlacement = resourceAndEstimate => {
     var t0 = performance.now();
@@ -159,28 +153,30 @@ const Layout = (props) => {
           projectList={props.projectList}
           resourceList={props.resourceList}
           handleSchedulePlacement={props.onFetchResourceSchedule}
-          availableTimes={availability}
+          availableTimes={props.availability}
           closeModal={handleTaskAdd}
         />
       </Modal>
       <Modal
-        show={showTaskDetail}
-        modalClosed={handleTaskDetail}
+        show={props.showTaskDetail}
+        // modalClosed={handleTaskDetail}
         role="taskDetail"
       >
         <TaskDetail
-          taskTitle={selectedTask.taskTitle}
-          taskClientName={selectedTask.clientName}
-          taskImpact={selectedTask.taskImpact}
-          taskProject={selectedTask.taskProjectTitle}
-          taskError={selectedTask.taskErroneousBehaviour}
-          taskStartTime={selectedTask.taskStartTime}
-          taskEndTime={selectedTask.taskEndTime}
-          closeModal={handleTaskDetail}
+          taskTitle={props.selectedTask.taskTitle}
+          taskClientName={props.selectedTask.clientName}
+          taskImpact={props.selectedTask.taskImpact}
+          taskProject={props.selectedTask.taskProjectTitle}
+          taskError={props.selectedTask.taskErroneousBehaviour}
+          taskStartTime={props.selectedTask.taskStartTime}
+          taskEndTime={props.selectedTask.taskEndTime}
+          // closeModal={handleTaskDetail}
         />
       </Modal>
       <Header />
-      <Calendar taskClicked={clickTask} />
+      <Calendar 
+      // taskClicked={clickTask} 
+      />
       <Footer clicked={handleTaskAdd} />
     </React.Fragment>
   );
@@ -195,7 +191,9 @@ const mapStateToProps = state => {
   return {
     projectList: state.taskReducer.projectList,
     resourceList: state.taskReducer.resourceList,
-    resourceSchedule: state.resourceReducer.resourceSchedule
+    resourceSchedule: state.resourceReducer.resourceSchedule,
+    selectedTask: state.taskReducer.selectedTask,
+    showTaskDetail: state.taskReducer.showTaskDetail
   }
 }
 

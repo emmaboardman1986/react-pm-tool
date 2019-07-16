@@ -2,6 +2,8 @@ import React from "react";
 import Task from "../../Task/Task";
 import DayDate from "../DayDate/DayDate";
 import classes from "./WeeklyGrid.module.css";
+import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 
 const WeeklyGrid = props => {
   const getCurrentDate = () => {
@@ -18,7 +20,7 @@ const WeeklyGrid = props => {
     return monday;
   };
   const getWeeklyArray = () => {
-	var t0 = performance.now();
+    var t0 = performance.now();
     let monday = getMonday(),
       currentWeek = [];
     const months = [
@@ -49,9 +51,9 @@ const WeeklyGrid = props => {
         " " +
         months[tempDate.getMonth()];
       currentWeek.push(dateString);
-	}
-	var t1 = performance.now();
-	console.log("Call to getWeeklyArray took " + (t1 - t0) + " milliseconds.");
+    }
+    var t1 = performance.now();
+    console.log("Call to getWeeklyArray took " + (t1 - t0) + " milliseconds.");
     return currentWeek;
   };
 
@@ -66,11 +68,11 @@ const WeeklyGrid = props => {
         return "rd";
       default:
         return "th";
-	}
+    }
   };
 
   const returnCurrentWeek = () => {
-	var t0 = performance.now();
+    var t0 = performance.now();
     const daysOfWeek = getWeeklyArray().map(day => {
       const dayClass = day.replace(/ .*/, "");
       return (
@@ -78,14 +80,16 @@ const WeeklyGrid = props => {
           <p>{props.isDateShown ? day : ""}</p>
         </DayDate>
       );
-	});
-	var t1 = performance.now();
-	console.log("Call to returnCurrentWeek took " + (t1 - t0) + " milliseconds.");
+    });
+    var t1 = performance.now();
+    console.log(
+      "Call to returnCurrentWeek took " + (t1 - t0) + " milliseconds."
+    );
     return daysOfWeek;
   };
 
   const generateTaskClasses = task => {
-	var t0 = performance.now();
+    var t0 = performance.now();
     let color;
     switch (task.clientName) {
       case "Delos":
@@ -116,9 +120,11 @@ const WeeklyGrid = props => {
       gridColumnEnd: task.taskEndTime,
       marginRight: marginRight,
       zIndex: 2
-	};
-	var t1 = performance.now();
-    console.log("Call to generateTaskClasses took " + (t1 - t0) + " milliseconds.");
+    };
+    var t1 = performance.now();
+    console.log(
+      "Call to generateTaskClasses took " + (t1 - t0) + " milliseconds."
+    );
     return dynamicStyles;
   };
 
@@ -130,7 +136,8 @@ const WeeklyGrid = props => {
           key={task.taskId}
           style={generateTaskClasses(task)}
           taskClicked={() => {
-            props.taskClicked(task);
+            // props.taskClicked(task);
+            props.onShowTaskDetail(task);
           }}
         >
           <p className={classes.ClientName}>
@@ -155,4 +162,13 @@ const WeeklyGrid = props => {
   );
 };
 
-export default WeeklyGrid;
+const mapDispatchToProps = dispatch => {
+  return {
+    onShowTaskDetail: task => dispatch(actions.showTaskDetails(task))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(WeeklyGrid);

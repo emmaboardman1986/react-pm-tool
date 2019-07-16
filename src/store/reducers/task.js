@@ -6,7 +6,21 @@ const initialState = {
   loading: false,
   projectList: [],
   resourceList: [],
-  data: []
+  data: [],
+  selectedTask: {
+    taskId: "0",
+    taskTitle: "No task was selected, please exit the screen and click a task",
+    taskAffectedArea: "n/a",
+    taskErroneousBehaviour: "n/a",
+    taskExpectedBehaviour: "n/a",
+    taskImpact: "n/a",
+    taskStartTime: "n/a",
+    taskEndTime: "n/a",
+    taskEstimate: "n/a",
+    projectTitle: "n/a",
+    clientName: "n/a"
+  },
+  showTaskDetail: false
 };
 
 const taskReducer = (state = initialState, action) => {
@@ -25,6 +39,11 @@ const taskReducer = (state = initialState, action) => {
         projectList: updatedProjectList,
         resourceList: action.data.resources
       });
+    case actionTypes.SHOW_TASK_DETAILS:
+      return updateObject(state, {
+        selectedTask: action.selectedTask,
+        showTaskDetail: true
+      })
     default:
       return state;
   }
