@@ -6,8 +6,10 @@ import Modal from "../../components/UI/Modal/Modal";
 import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
 import TaskDetail from "../../components/Task/TaskDetail/TaskDetail";
 import axios from "axios";
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
-const Layout = () => {
+const Layout = (props) => {
   const [showTaskAdd, setTaskAdd] = useState(false);
   const [showTaskDetail, setTaskDetail] = useState(false);
   const [selectedTask, setSelectedTask] = useState({
@@ -23,8 +25,8 @@ const Layout = () => {
     projectTitle: "n/a",
     clientName: "n/a"
   });
-  const [projectList, setProjectList] = useState([]);
-  const [resourceList, setResourceList] = useState([]);
+  // const [projectList, setProjectList] = useState([]);
+  // const [resourceList, setResourceList] = useState([]);
   const [resourceSchedule, setResourceSchedule] = useState("resourceSchedule");
   const [availability, setAvailability] = useState({
     startTime: "",
@@ -33,18 +35,7 @@ const Layout = () => {
   const [resourceAndEstimate, setResourceAndEstimate] = useState("r and e");
 
   useEffect(() => {
-    var t0 = performance.now();
-    axios
-      .get("http://40414669.wdd.napier.ac.uk/inc/readAddTaskOptions.php")
-      .then(result => {
-        setProjectList(result.data["clientProjects"]);
-        setResourceList(result.data["resources"]);
-        handleTaskPresets(result.data["clientProjects"]);
-      });
-    var t1 = performance.now();
-    console.log(
-      "Call to useEffect for task options took " + (t1 - t0) + " milliseconds."
-    );
+    props.onFetchTaskOptions();
   }, []);
 
   useEffect(() => {
@@ -64,31 +55,6 @@ const Layout = () => {
   const handleTaskDetail = () => {
     let toggle = !showTaskDetail;
     setTaskDetail(toggle);
-  };
-
-  const handleTaskPresets = projectList => {
-    var t0 = performance.now();
-    let projectsArray = projectList.reduce(function(
-      formPresetsArray,
-      clientObj
-    ) {
-      console.log("client object:" + clientObj.clientName);
-      for (let j = 0; j < clientObj.projects.length; j++) {
-        let clientObject = {
-          clientName: clientObj.clientName,
-          projectName: clientObj.projects[j].projectTitle,
-          projectId: clientObj.projects[j].projectId
-        };
-        formPresetsArray.push(clientObject);
-      }
-      return formPresetsArray;
-    },
-    []);
-	setProjectList(projectsArray);
-	var t1 = performance.now();
-    console.log(
-      "Call to handleTaskPresets took " + (t1 - t0) + " milliseconds."
-    );
   };
 
   const fetchResourceSchedule = resourceAndEstimate => {
@@ -207,8 +173,8 @@ const Layout = () => {
     <React.Fragment>
       <Modal show={showTaskAdd} modalClosed={handleTaskAdd} role="taskAdd">
         <TaskAdd
-          projectList={projectList}
-          resourceList={resourceList}
+          projectList={props.projectList}
+          resourceList={props.resourceList}
           handleSchedulePlacement={fetchResourceSchedule}
           availableTimes={availability}
           closeModal={handleTaskAdd}
@@ -237,4 +203,17 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    projectList: state.taskReducer.projectList,
+    resourceList: state.taskReducer.resourceList
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

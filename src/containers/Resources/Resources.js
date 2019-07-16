@@ -3,6 +3,8 @@ import Resource from '../../components/Resource/Resource';
 import classes from './Resources.module.css';
 import { RepositoryFactory } from "../../utils/RepositoryFactory";
 import axios from "axios";
+import * as actions from '../../store/actions/index';
+import { connect } from 'react-redux';
 import { tsPropertySignature } from '@babel/types';
 const ResourceRepository = RepositoryFactory.get("resources");
 const TaskRepository = RepositoryFactory.get("tasks");
@@ -10,35 +12,21 @@ const TaskRepository = RepositoryFactory.get("tasks");
 
 const Resources = (props) => {
 	
-	const [resourceList, setResourceList] = useState([]);
-
 	useEffect(() => {
-		var t0 = performance.now();
-		axios.get('http://40414669.wdd.napier.ac.uk/inc/readTaskDetails.php')
-		.then(result => {
-		console.log(result);
-		setResourceList(result.data);
-		});
-		var t1 = performance.now();
-		console.log(
-		  "Call to useEffect for readTaskDetails took " + (t1 - t0) + " milliseconds."
-		);
-		return () => {
-			setResourceList([]);
-		}
-		
-	}, []);
+		props.onFetchTasks();
+	}, [])
 
-
-	let resourcesComponents = resourceList.map(resource => {
-		return (<Resource 
-					key={resource.resourceId} 
-					name={resource.resourceName} 
-					job={resource.resourceJobTitle} 
-					tasks={resource.tasks}
-					taskClicked={props.taskClicked}
-					 />);	
-	})
+	let resourcesComponents = null
+	
+	// props.resourceList.map(resource => {
+	// 	return (<Resource 
+	// 				key={resource.resourceId} 
+	// 				name={resource.resourceName} 
+	// 				job={resource.resourceJobTitle} 
+	// 				tasks={resource.tasks}
+	// 				taskClicked={props.taskClicked}
+	// 				 />);	
+	// })
 
     return (
 		<div className={classes.Resources}>
@@ -48,4 +36,16 @@ const Resources = (props) => {
 
 };
 
-export default Resources;
+const mapStateToProps = state => {
+	return {
+		resourceList: state.taskReducer.tasks
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onFetchTasks: () => dispatch(actions.fetchTasks())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Resources);
