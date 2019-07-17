@@ -20,7 +20,8 @@ const initialState = {
     projectTitle: "n/a",
     clientName: "n/a"
   },
-  showTaskDetail: false
+  showTaskDetail: false,
+  showTaskNew: false
 };
 
 const taskReducer = (state = initialState, action) => {
@@ -47,6 +48,10 @@ const taskReducer = (state = initialState, action) => {
     case actionTypes.HIDE_TASK_DETAILS:
       return updateObject(state, {
         showTaskDetail: false
+      })
+    case actionTypes.TOGGLE_TASK_NEW:
+      return updateObject(state, {
+        showTaskNew: !state.showTaskNew
       })
     default:
       return state;

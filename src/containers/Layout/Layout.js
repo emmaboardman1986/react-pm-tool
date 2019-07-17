@@ -5,24 +5,22 @@ import Footer from "../../components/Footer/Footer";
 import Modal from "../../components/UI/Modal/Modal";
 import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
 import TaskDetail from "../../components/Task/TaskDetail/TaskDetail";
+import TaskNew from "../TaskNew/TaskNew";
 import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
 const Layout = props => {
-  const [showTaskAdd, setTaskAdd] = useState(false);
-
-  useEffect(() => {
-    props.onFetchTaskOptions();
-  }, []);
+  const [showTaskNew, setTaskNew] = useState(false);
 
   useEffect(() => {
     handleSchedulePlacement(resourceAndEstimate);
     console.log(resourceAndEstimate);
   }, [props.resourceSchedule, resourceAndEstimate]);
 
-  const handleTaskAdd = () => {
-    setTaskAdd(!showTaskAdd);
+
+  const handleTaskNew = () => {
+    setTaskNew(!showTaskNew);
   };
 
   const handleSchedulePlacement = resourceAndEstimate => {
@@ -124,14 +122,8 @@ const Layout = props => {
 
   return (
     <React.Fragment>
-      <Modal show={showTaskAdd} modalClosed={handleTaskAdd} role="taskAdd">
-        <TaskAdd
-          projectList={props.projectList}
-          resourceList={props.resourceList}
-          handleSchedulePlacement={props.onFetchResourceSchedule}
-          availableTimes={props.availability}
-          closeModal={handleTaskAdd}
-        />
+      <Modal show={props.showTaskNew} modalClosed={props.onToggleTaskNewModal} role="taskAdd">
+        <TaskNew />
       </Modal>
       <Modal
         show={props.showTaskDetail}
@@ -151,7 +143,7 @@ const Layout = props => {
       </Modal>
       <Header />
       <Calendar />
-      <Footer clicked={handleTaskAdd} />
+      <Footer clicked={props.onToggleTaskNewModal} />
     </React.Fragment>
   );
 };
@@ -167,18 +159,19 @@ const mapStateToProps = state => {
     resourceList: state.taskReducer.resourceList,
     resourceSchedule: state.resourceReducer.resourceSchedule,
     selectedTask: state.taskReducer.selectedTask,
-    showTaskDetail: state.taskReducer.showTaskDetail
+    showTaskDetail: state.taskReducer.showTaskDetail,
+    showTaskNew: state.taskReducer.showTaskNew
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions()),
     onFetchResourceSchedule: resourceAndEstimate =>
       dispatch(actions.fetchResourceSchedule(resourceAndEstimate)),
     onHandleResourceAvailability: availability =>
       dispatch(actions.handleSchedulePlacement(availability)),
-    onCloseTaskDetailModal: () => dispatch(actions.hideTaskDetails())
+    onCloseTaskDetailModal: () => dispatch(actions.hideTaskDetails()),
+    onToggleTaskNewModal: () => dispatch(actions.toggleTaskNew())
   };
 };
 

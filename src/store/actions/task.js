@@ -95,3 +95,9 @@ export const hideTaskDetails = () => {
     type: actionTypes.HIDE_TASK_DETAILS
   }
 }
+
+export const toggleTaskNew = () => {
+  return {
+    type: actionTypes.TOGGLE_TASK_NEW,
+  }
+}
