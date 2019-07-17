@@ -10,3 +10,7 @@ export {
     fetchResourceSchedule,
     handleSchedulePlacement
 } from './resource'
+
+export {
+    fetchClientResources
+} from './client'

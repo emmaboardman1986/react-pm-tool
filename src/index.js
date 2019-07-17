@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import taskReducer from "./store/reducers/task";
 import resourceReducer from "./store/reducers/resource";
+import clientReducer from "./store/reducers/client";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
@@ -14,7 +15,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   taskReducer: taskReducer,
-  resourceReducer: resourceReducer
+  resourceReducer: resourceReducer,
+  clientReducer: clientReducer
 });
 
 const store = createStore(

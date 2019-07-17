@@ -1,48 +1,67 @@
-import React, {useState, useEffect} from 'react';
-import Resource from '../../components/Resource/Resource';
-import classes from './Resources.module.css';
-import { RepositoryFactory } from "../../utils/RepositoryFactory";
-import axios from "axios";
-import * as actions from '../../store/actions/index';
-import { connect } from 'react-redux';
-import { tsPropertySignature } from '@babel/types';
-const ResourceRepository = RepositoryFactory.get("resources");
-const TaskRepository = RepositoryFactory.get("tasks");
+import React, { useState, useEffect } from "react";
+import Resource from "../../components/Resource/Resource";
+import classes from "./Resources.module.css";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
+const Resources = props => {
 
-const Resources = (props) => {
-	
-	useEffect(() => {
-		props.onFetchTasks();
-	}, [])
+const isPM = props.match.url === "/pm" ? true : false;
 
-	let resourcesComponents = props.resourceList.map(resource => {
-		return (<Resource 
-					key={resource.resourceId} 
-					name={resource.resourceName} 
-					job={resource.resourceJobTitle} 
-					tasks={resource.tasks}
-					 />);	
-	})
+  useEffect(() => {
+	if (isPM){
+	props.onFetchTasks();
+	} else {
+		props.onFetchClientTasks()
+	}
+  }, []);
 
-    return (
-		<div className={classes.Resources}>
-		{resourcesComponents}
-		</div>
-	);
+  let resourcesComponents;
+  let clientResourceTasks
 
+  if (isPM) {
+    resourcesComponents = props.resourceList.map(resource => {
+      return (
+        <Resource
+          key={resource.resourceId}
+          name={resource.resourceName}
+          job={resource.resourceJobTitle}
+          tasks={resource.tasks}
+        />
+      );
+    });
+  } else {
+    resourcesComponents = props.clientResourceList.map(resource => {
+		return (
+		  <Resource
+			key={resource.resourceId}
+			// name={resource.resourceName}
+			job={resource.resourceJobTitle}
+			tasks={resource.tasks}
+		  />
+		);
+	  });
+  }
+
+  return <div className={classes.Resources}>{resourcesComponents}</div>;
 };
 
 const mapStateToProps = state => {
-	return {
-		resourceList: state.taskReducer.tasks
-	}
-}
+  return {
+	resourceList: state.taskReducer.tasks,
+	clientResourceList: state.clientReducer.clientResourceList
+  };
+};
 
 const mapDispatchToProps = dispatch => {
-	return {
-		onFetchTasks: () => dispatch(actions.fetchTasks())
-	}
-}
+  return {
+	onFetchTasks: () => dispatch(actions.fetchTasks()),
+	onFetchClientTasks: () => dispatch(actions.fetchClientResources())
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resources);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Resources));

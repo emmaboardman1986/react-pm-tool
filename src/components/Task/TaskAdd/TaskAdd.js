@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from '../../../store/actions/index';
 
+
 const AddTask = props => {
   const [formInput, setFormInput] = useState({
     projectId: "",
@@ -156,7 +157,11 @@ const AddTask = props => {
                     required
                   />
                 </li>
-                <li className={classes.FormRowTextArea}>
+              </ul>
+            </div>
+            <div class={classes.RightOnDesktop}>
+              <ul className={classes.FormWrapper}>
+              <li className={classes.FormRowTextArea}>
                   <label htmlFor="taskNormal">Expected behaviour</label>
                   <textarea
                     name="taskExpectedBehaviour"
@@ -165,10 +170,6 @@ const AddTask = props => {
                     required
                   />
                 </li>
-              </ul>
-            </div>
-            <div class={classes.RightOnDesktop}>
-              <ul className={classes.FormWrapper}>
                 <li className={classes.FormRow}>
                   <label htmlFor="taskImpact">Impact on business</label>
                   <select
@@ -198,44 +199,6 @@ const AddTask = props => {
                     id="taskRecentChanges"
                     name="taskRecentChanges"
                   />
-                </li>
-                <li className={classes.FormRow}>
-                  <label htmlFor="resourceId">Resource</label>
-                  <select
-                    name="taskResource"
-                    onChange={handleInputChange}
-                    id="resourceId"
-                    value={formInput.resourceId}
-                    required
-                  >
-                    {generatedResourceOptions}
-                  </select>
-                </li>
-                <li className={classes.FormRow}>
-                  <label htmlFor="taskEstimate">Estimate</label>
-                  <input
-                    type="text"
-                    id="taskEstimate"
-                    name="taskEstimate"
-                    onChange={handleInputChange}
-                    onBlur={() => {
-                      props.handleSchedulePlacement({
-                        resourceId: formInput.taskResource,
-                        taskEstimate: formInput.taskEstimate
-                      });
-                    }}
-                    required
-                  />
-                </li>
-                <li className={classes.FormRow}>
-                  <label htmlFor="taskSchedule">
-                    First Available Time Slot
-                  </label>
-                  <p class={classes.DefaultMessage}>
-                    {props.availableTimes.endTime
-                      ? generateTimeSlots(props.availableTimes)
-                      : "Requires resource and estimate input"}
-                  </p>
                 </li>
               </ul>
             </div>
