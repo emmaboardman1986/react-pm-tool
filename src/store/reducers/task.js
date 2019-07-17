@@ -21,7 +21,8 @@ const initialState = {
     clientName: "n/a"
   },
   showTaskDetail: false,
-  showTaskNew: false
+  showTaskNew: false,
+  unscheduledTasks: []
 };
 
 const taskReducer = (state = initialState, action) => {
@@ -53,6 +54,12 @@ const taskReducer = (state = initialState, action) => {
       return updateObject(state, {
         showTaskNew: !state.showTaskNew
       })
+      case actionTypes.FETCH_UNSCHEDULED_TASKS_START:
+        return updateObject(state, { loading: true });
+      case actionTypes.FETCH_UNSCHEDULED_TASKS_SUCCESS:
+        return updateObject(state, { unscheduledTasks: action.tasks });
+      case actionTypes.FETCH_UNSCHEDULED_TASKS_FAIL:
+        return updateObject(state, { loading: false });
     default:
       return state;
   }

@@ -14,20 +14,16 @@ const AddTask = props => {
     taskExpectedBehaviour: "",
     taskImpact: "",
     taskTimeNoticed: "",
-    taskEstimate: "",
-    taskStartTime: props.availableTimes.startTime,
-    taskEndTime: props.availableTimes.endTime,
-    taskResource: "",
     taskRecentChanges: ""
   });
 
-  useEffect(() => {
-    setFormInput({
-      ...formInput,
-      taskStartTime: props.availableTimes.startTime,
-      taskEndTime: props.availableTimes.endTime
-    });
-  }, [props.availableTimes]);
+  // useEffect(() => {
+  //   setFormInput({
+  //     ...formInput,
+  //     taskStartTime: props.availableTimes.startTime,
+  //     taskEndTime: props.availableTimes.endTime
+  //   });
+  // }, [props.availableTimes]);
 
   // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -97,6 +93,7 @@ const AddTask = props => {
   const handleSubmit = event => {
     var t0 = performance.now();
     event.preventDefault();
+    console.log(formInput)
     axios
       .post("http://40414669.wdd.napier.ac.uk/inc/postNewTask.php", formInput)
       .then(response => {

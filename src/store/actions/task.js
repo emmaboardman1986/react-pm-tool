@@ -101,3 +101,43 @@ export const toggleTaskNew = () => {
     type: actionTypes.TOGGLE_TASK_NEW,
   }
 }
+
+export const fetchUnscheduledTasksStart = () => {
+  return {
+    type: actionTypes.FETCH_UNSCHEDULED_TASKS_START
+  };
+};
+
+export const fetchUnscheduledTasksSuccess = tasks => {
+  console.log("fetch task options success");
+  return {
+    type: actionTypes.FETCH_UNSCHEDULED_TASKS_SUCCESS,
+    tasks: tasks
+  };
+};
+
+export const fetchUnscheduledTasksFail = error => {
+  return {
+    type: actionTypes.FETCH_UNSCHEDULED_TASKS_FAIL,
+    error: error
+  };
+};
+
+export const fetchUnscheduledTasks = () => {
+return dispatch => {
+  dispatch(fetchUnscheduledTasksStart());
+  var t0 = performance.now();
+  axios
+    .get("http://40414669.wdd.napier.ac.uk/inc/readUnscheduledTasks.php")
+    .then(result => {
+      dispatch(fetchUnscheduledTasksSuccess(result.data.data))
+    })
+    .catch(error => {
+        dispatch(fetchUnscheduledTasksFail(error));
+    })
+  var t1 = performance.now();
+  console.log(
+    "Call to useEffect for task options took " + (t1 - t0) + " milliseconds."
+  );
+};
+};

@@ -11,7 +11,7 @@ function App() {
       <Route path="/" exact render={() => <Auth />} />
       <Route path="/pm" exact render={() => <Layout user="pm" />} />
       <Route path="/client" exact render={() => <Layout user="client" />} />
-      <Route path="/unscheduledtasks" render={() => <UnscheduledTasks />} />
+      <Route path="/unscheduledtasks" render={() => <Layout />} />
     </div>
   );
 }

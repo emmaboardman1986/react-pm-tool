@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Calendar from "../../components/Calendar/Calendar";
+import UnscheduledTasks from "../../containers/UnscheduledTasks/UnscheduledTasks";
 import Footer from "../../components/Footer/Footer";
 import Modal from "../../components/UI/Modal/Modal";
 import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
@@ -9,6 +10,7 @@ import TaskNew from "../TaskNew/TaskNew";
 import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
+import { withRouter } from 'react-router-dom';
 
 const Layout = props => {
   const [showTaskNew, setTaskNew] = useState(false);
@@ -142,7 +144,7 @@ const Layout = props => {
         />
       </Modal>
       <Header />
-      <Calendar />
+      {props.match.url === "/unscheduledtasks" ? <UnscheduledTasks /> : <Calendar />}
       <Footer clicked={props.onToggleTaskNewModal} />
     </React.Fragment>
   );
@@ -178,4 +180,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Layout);
+)(withRouter(Layout));

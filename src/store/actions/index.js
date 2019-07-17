@@ -4,6 +4,7 @@ export {
     showTaskDetails,
     hideTaskDetails,
     toggleTaskNew,
+    fetchUnscheduledTasks
 } from './task'
 
 export {
