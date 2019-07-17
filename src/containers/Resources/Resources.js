@@ -18,7 +18,6 @@ const isPM = props.match.url === "/pm" ? true : false;
   }, []);
 
   let resourcesComponents;
-  let clientResourceTasks
 
   if (isPM) {
     resourcesComponents = props.resourceList.map(resource => {
@@ -36,7 +35,6 @@ const isPM = props.match.url === "/pm" ? true : false;
 		return (
 		  <Resource
 			key={resource.resourceId}
-			// name={resource.resourceName}
 			job={resource.resourceJobTitle}
 			tasks={resource.tasks}
 		  />
