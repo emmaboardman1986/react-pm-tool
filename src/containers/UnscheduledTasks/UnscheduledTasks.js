@@ -3,12 +3,12 @@ import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 import UnscheduledTaskList from "../../components/UnscheduledTaskList/UnscheduledTaskList";
 import Modal from "../../components/UI/Modal/Modal";
-import Scheduler from "../../components/Schedule/Schedule";
+import Scheduler from "../../containers/Scheduler/Scheduler";
 
 const UnscheduledTasks = props => {
   useEffect(() => {
     props.onFetchUnscheduledTasks();
-  }, [props.unscheduledTasks]);
+  }, []);
 
   return (
     <div>

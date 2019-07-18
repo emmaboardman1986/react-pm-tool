@@ -6,7 +6,8 @@ export {
     toggleTaskNew,
     fetchUnscheduledTasks,
     showSchedulingComponent,
-    hideSchedulingComponent
+    hideSchedulingComponent,
+    handleScheduleSubmit
 } from './task'
 
 export {

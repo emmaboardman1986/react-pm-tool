@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./TaskAdd.module.css";
 import axios from "axios";
 import { connect } from "react-redux";
-import * as actions from '../../../store/actions/index';
-
+import * as actions from "../../../store/actions/index";
 
 const AddTask = props => {
   const [formInput, setFormInput] = useState({
@@ -59,41 +58,10 @@ const AddTask = props => {
     </option>
   ));
 
-  let resourceOptions = props.resourceList;
-  const generatedResourceOptions = resourceOptions.map(resource => (
-    <option id={resource.resourceId} value={resource.resourceId}>
-      {resource.resourceName}
-    </option>
-  ));
-
-  const generateTimeSlots = availableTimes => {
-    if (availableTimes.endTime === "") {
-      return <p>Requires resource and estimate input</p>;
-    } else {
-      return (
-        <div className={classes.Timeslots} data-cy="timeslots">
-          <input
-            className={classes.TimeSlots}
-            readOnly
-            value={availableTimes.startTime}
-            placeholder={availableTimes.startTime}
-          />{" "}
-          -
-          <input
-            className={classes.TimeSlots}
-            readOnly
-            value={availableTimes.endTime}
-            placeholder={availableTimes.endTime}
-          />
-        </div>
-      );
-    }
-  };
-
   const handleSubmit = event => {
     var t0 = performance.now();
     event.preventDefault();
-    console.log(formInput)
+    console.log(formInput);
     axios
       .post("http://40414669.wdd.napier.ac.uk/inc/postNewTask.php", formInput)
       .then(response => {
@@ -158,7 +126,7 @@ const AddTask = props => {
             </div>
             <div class={classes.RightOnDesktop}>
               <ul className={classes.FormWrapper}>
-              <li className={classes.FormRowTextArea}>
+                <li className={classes.FormRowTextArea}>
                   <label htmlFor="taskNormal">Expected behaviour</label>
                   <textarea
                     name="taskExpectedBehaviour"
@@ -200,7 +168,7 @@ const AddTask = props => {
               </ul>
             </div>
           </div>
-          <div class="bottom-on-desktop">
+          <div className={classes.BottomOnDesktop}>
             <button
               type="submit"
               data-cy="add-task-submit"

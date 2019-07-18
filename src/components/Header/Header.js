@@ -38,7 +38,7 @@ const Header = props => {
 
   return (
     <header className={classes.Header}>
-      <Logo />
+      <Link to="/pm"><Logo /></Link>
       <Link to="/unscheduledtasks">{returnNotification()}</Link>
     </header>
   );

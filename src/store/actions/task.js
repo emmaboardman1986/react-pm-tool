@@ -154,3 +154,36 @@ export const hideSchedulingComponent = () => {
     type: actionTypes.HIDE_SCHEDULING_COMPONENT
   }
 }
+
+
+export const handleScheduleSubmitSuccess = message => {
+  return {
+    type: actionTypes.HANDLE_SCHEDULE_SUBMIT_SUCCESS,
+    message: message
+  };
+};
+
+export const handleScheduleSubmitFail = error => {
+  return {
+    type: actionTypes.HANDLE_SCHEDULE_SUBMIT_FAIL,
+    error: error
+  };
+};
+
+export const handleScheduleSubmit = (formInput) => {
+  return dispatch => {
+    console.log(formInput);
+    var t0 = performance.now();
+    axios
+      .post("http://40414669.wdd.napier.ac.uk/inc/postTaskSchedule.php", formInput)
+      .then(response => {
+        dispatch(handleScheduleSubmitSuccess(response.message))
+        console.log(response);
+      })
+	  .catch(error => console.log(error));
+	  var t1 = performance.now();
+      console.log(
+        "Call to handleSubmit took " + (t1 - t0) + " milliseconds."
+      );
+  };
+  }

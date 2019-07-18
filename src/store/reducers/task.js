@@ -56,35 +56,49 @@ const taskReducer = (state = initialState, action) => {
       return updateObject(state, {
         selectedTask: action.selectedTask,
         showTaskDetail: true
-      })
+      });
     case actionTypes.HIDE_TASK_DETAILS:
       return updateObject(state, {
         showTaskDetail: false
-      })
+      });
     case actionTypes.TOGGLE_TASK_NEW:
       return updateObject(state, {
         showTaskNew: !state.showTaskNew
-      })
-      case actionTypes.FETCH_UNSCHEDULED_TASKS_START:
-        return updateObject(state, { loading: true });
-      case actionTypes.FETCH_UNSCHEDULED_TASKS_SUCCESS:
-        return updateObject(state, { unscheduledTasks: action.tasks });
-      case actionTypes.FETCH_UNSCHEDULED_TASKS_FAIL:
-        return updateObject(state, { loading: false });
-        case actionTypes.SHOW_SCHEDULING_COMPONENT:
-          return updateObject(state, {
-            taskToBeScheduled: action.selectedTask,
-            showSchedulingComponent: true
-          })
-        case actionTypes.HIDE_SCHEDULING_COMPONENT:
-          return updateObject(state, {
-            showSchedulingComponent: false
-          })
+      });
+    case actionTypes.FETCH_UNSCHEDULED_TASKS_START:
+      return updateObject(state, { loading: true });
+    case actionTypes.FETCH_UNSCHEDULED_TASKS_SUCCESS:
+      return updateObject(state, { unscheduledTasks: action.tasks });
+    case actionTypes.FETCH_UNSCHEDULED_TASKS_FAIL:
+      return updateObject(state, { loading: false });
+    case actionTypes.SHOW_SCHEDULING_COMPONENT:
+      return updateObject(state, {
+        taskToBeScheduled: action.selectedTask,
+        showSchedulingComponent: true
+      });
+    case actionTypes.HIDE_SCHEDULING_COMPONENT:
+      return updateObject(state, {
+        showSchedulingComponent: false
+      });
+    case actionTypes.HANDLE_SCHEDULE_SUBMIT:
+      return updateObject(state, {
+        showSchedulingComponent: false,
+        taskToBeScheduled: {
+          taskId: "0",
+          taskTitle:
+            "No task was selected, please exit the screen and click a task",
+          taskAffectedArea: "n/a",
+          taskErroneousBehaviour: "n/a",
+          taskExpectedBehaviour: "n/a",
+          taskImpact: "n/a",
+          projectTitle: "n/a",
+          clientName: "n/a"
+        }
+      });
     default:
       return state;
   }
 };
-
 
 const handleTaskPresets = projectList => {
   let projectsArray = projectList.reduce(function(formPresetsArray, clientObj) {
