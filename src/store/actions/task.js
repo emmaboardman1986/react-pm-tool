@@ -141,3 +141,16 @@ return dispatch => {
   );
 };
 };
+
+export const showSchedulingComponent = (task) => {
+  return {
+    type: actionTypes.SHOW_SCHEDULING_COMPONENT,
+    selectedTask: task
+  }
+}
+
+export const hideSchedulingComponent = () => {
+  return {
+    type: actionTypes.HIDE_SCHEDULING_COMPONENT
+  }
+}

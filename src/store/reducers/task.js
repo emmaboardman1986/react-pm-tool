@@ -22,7 +22,18 @@ const initialState = {
   },
   showTaskDetail: false,
   showTaskNew: false,
-  unscheduledTasks: []
+  unscheduledTasks: [],
+  showSchedulingComponent: false,
+  taskToBeScheduled: {
+    taskId: "0",
+    taskTitle: "No task was selected, please exit the screen and click a task",
+    taskAffectedArea: "n/a",
+    taskErroneousBehaviour: "n/a",
+    taskExpectedBehaviour: "n/a",
+    taskImpact: "n/a",
+    projectTitle: "n/a",
+    clientName: "n/a"
+  }
 };
 
 const taskReducer = (state = initialState, action) => {
@@ -60,6 +71,15 @@ const taskReducer = (state = initialState, action) => {
         return updateObject(state, { unscheduledTasks: action.tasks });
       case actionTypes.FETCH_UNSCHEDULED_TASKS_FAIL:
         return updateObject(state, { loading: false });
+        case actionTypes.SHOW_SCHEDULING_COMPONENT:
+          return updateObject(state, {
+            taskToBeScheduled: action.selectedTask,
+            showSchedulingComponent: true
+          })
+        case actionTypes.HIDE_SCHEDULING_COMPONENT:
+          return updateObject(state, {
+            showSchedulingComponent: false
+          })
     default:
       return state;
   }

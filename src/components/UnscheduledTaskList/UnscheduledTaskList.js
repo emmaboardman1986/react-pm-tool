@@ -11,8 +11,6 @@ const UnscheduledTaskList = props => {
      width: '100%'
   }
 
-
-
   const returnTasks = () => {
     let tasks = props.unscheduledTasks.map(task => {
       return (
@@ -22,7 +20,7 @@ const UnscheduledTaskList = props => {
           taskInformation={task}
           style={inlineStyles}
           taskClicked={() => {
-          props.onShowTaskDetail(task);
+          props.onShowSchedulingComponent(task);
           }}
         >
           <p className={classes.ClientName}>
@@ -53,7 +51,7 @@ const UnscheduledTaskList = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onShowTaskDetail: task => dispatch(actions.showTaskDetails(task))
+    onShowSchedulingComponent: () => dispatch(actions.showSchedulingComponent())
   };
 };
 

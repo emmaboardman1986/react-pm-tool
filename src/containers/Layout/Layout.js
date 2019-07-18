@@ -10,7 +10,7 @@ import TaskNew from "../TaskNew/TaskNew";
 import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 const Layout = props => {
   const [showTaskNew, setTaskNew] = useState(false);
@@ -19,7 +19,6 @@ const Layout = props => {
     handleSchedulePlacement(resourceAndEstimate);
     console.log(resourceAndEstimate);
   }, [props.resourceSchedule, resourceAndEstimate]);
-
 
   const handleTaskNew = () => {
     setTaskNew(!showTaskNew);
@@ -124,7 +123,11 @@ const Layout = props => {
 
   return (
     <React.Fragment>
-      <Modal show={props.showTaskNew} modalClosed={props.onToggleTaskNewModal} role="taskAdd">
+      <Modal
+        show={props.showTaskNew}
+        modalClosed={props.onToggleTaskNewModal}
+        role="taskAdd"
+      >
         <TaskNew />
       </Modal>
       <Modal
@@ -144,7 +147,11 @@ const Layout = props => {
         />
       </Modal>
       <Header />
-      {props.match.url === "/unscheduledtasks" ? <UnscheduledTasks /> : <Calendar />}
+      {props.match.url === "/unscheduledtasks" ? (
+        <UnscheduledTasks />
+      ) : (
+        <Calendar />
+      )}
       <Footer clicked={props.onToggleTaskNewModal} />
     </React.Fragment>
   );
