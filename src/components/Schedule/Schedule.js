@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./Schedule.module.css";
 import taskFormClasses from "../../components/Task/TaskAdd/TaskAdd.module.css";
 import unscheduledClasses from "../../components/UnscheduledTaskList/UnscheduledTaskList.module.css";
+import { Redirect } from "react-router-dom"
 
 const Schedule = props => {
   const [formInput, setFormInput] = useState({
@@ -21,7 +22,7 @@ const Schedule = props => {
     });
   }, [props.availableTimes]);
 
-  // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const generateTimeSlots = availableTimes => {
     if (availableTimes.endTime === "") {
@@ -67,6 +68,9 @@ const Schedule = props => {
     </option>
   ));
 
+  let redirect = null; 
+  isFormSubmitted ? redirect =  <Redirect to="/pm"/> : redirect = null;
+
   return (
     <div className={classes.Schedule}>
       <div className={unscheduledClasses.TopRowWrapper}>
@@ -91,6 +95,7 @@ const Schedule = props => {
         onSubmit={e => {
           e.preventDefault();
           props.handleScheduleSubmit(formInput);
+          setIsFormSubmitted(true);    
         }}
       >
         <div className={taskFormClasses.TopOnDesktop}>
@@ -148,6 +153,7 @@ const Schedule = props => {
           </p>
         </div>
       </form>
+      {redirect}
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
 const Header = props => {
+
   useEffect(() => {
     props.onFetchUnscheduledTasks();
   }, []);
@@ -26,20 +27,32 @@ const Header = props => {
       props.unscheduledTasks.length <= 0
     ) {
       notification = <Notification user="pm" unscheduledTasks="false" />;
-    } else if (props.match.url === "/client" &&
-	props.unscheduledTasks.length >= 1) {
-      notification = <Notification user="client" unscheduledTasks="true"/>;
-    } else if (props.match.url === "/client" &&
-	props.unscheduledTasks.length <= 0) {
-      notification = <Notification user="client" unscheduledTasks="false"/>;
+    } else if (
+      props.match.url === "/client" &&
+      props.unscheduledTasks.length >= 1
+    ) {
+      notification = <Notification user="client" unscheduledTasks="true" />;
+    } else if (
+      props.match.url === "/client" &&
+      props.unscheduledTasks.length <= 0
+    ) {
+      notification = <Notification user="client" unscheduledTasks="false" />;
     }
     return notification;
   };
 
   return (
     <header className={classes.Header}>
-      <Link to="/pm"><Logo /></Link>
-      <Link to="/unscheduledtasks">{returnNotification()}</Link>
+      <Link to="/pm">
+        <Logo />
+      </Link>
+      <Link
+        to={{
+          pathname: props.match.url + "/unscheduledtasks"
+        }}
+      >
+        {returnNotification()}
+      </Link>
     </header>
   );
 };

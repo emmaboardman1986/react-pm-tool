@@ -22,7 +22,7 @@ const UnscheduledTasks = props => {
       {props.unscheduledTasks.length >= 1 ? (
         <UnscheduledTaskList unscheduledTasks={props.unscheduledTasks} />
       ) : (
-        "No Unscheduled Tasks"
+        <p style={{ marginTop: '10vh', textAlign: 'center'}}>No Unscheduled Task</p>
       )}
     </div>
   );

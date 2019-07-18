@@ -13,12 +13,6 @@ import * as actions from "../../store/actions/index";
 import { withRouter } from "react-router-dom";
 
 const Layout = props => {
-  const [showTaskNew, setTaskNew] = useState(false);
-
-  // useEffect(() => {
-  //   handleSchedulePlacement(resourceAndEstimate);
-  //   console.log(resourceAndEstimate);
-  // }, [props.resourceSchedule, resourceAndEstimate]);
 
   return (
     <React.Fragment>
@@ -46,7 +40,7 @@ const Layout = props => {
         />
       </Modal>
       <Header />
-      {props.match.url === "/unscheduledtasks" ? (
+      {props.match.url === "/" + props.user + "/unscheduledtasks" ? (
         <UnscheduledTasks />
       ) : (
         <Calendar />

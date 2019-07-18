@@ -68,7 +68,7 @@ const taskReducer = (state = initialState, action) => {
     case actionTypes.FETCH_UNSCHEDULED_TASKS_START:
       return updateObject(state, { loading: true });
     case actionTypes.FETCH_UNSCHEDULED_TASKS_SUCCESS:
-      return updateObject(state, { unscheduledTasks: action.tasks });
+      return updateObject(state, { unscheduledTasks: action.tasks })
     case actionTypes.FETCH_UNSCHEDULED_TASKS_FAIL:
       return updateObject(state, { loading: false });
     case actionTypes.SHOW_SCHEDULING_COMPONENT:

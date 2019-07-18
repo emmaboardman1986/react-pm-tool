@@ -15,7 +15,7 @@ const isPM = props.match.url === "/pm" ? true : false;
 	} else {
 		props.onFetchClientTasks()
 	}
-  }, []);
+  }, [props.tasks]);
 
   let resourcesComponents;
 
@@ -48,7 +48,8 @@ const isPM = props.match.url === "/pm" ? true : false;
 const mapStateToProps = state => {
   return {
 	resourceList: state.taskReducer.tasks,
-	clientResourceList: state.clientReducer.clientResourceList
+  clientResourceList: state.clientReducer.clientResourceList,
+  tasks: state.taskReducer.tasks
   };
 };
 

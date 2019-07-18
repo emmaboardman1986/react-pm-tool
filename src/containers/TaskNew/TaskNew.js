@@ -3,22 +3,12 @@ import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import { withRouter } from "react-router-dom";
-import Scheduler from "../Scheduler/Scheduler";
 
 const NewTask = props => {
   useEffect(() => {
     props.onFetchTaskOptions();
   }, []);
 
-  const isPM = props.match.url === "/pm" ? true : false;
-
-  let scheduler;
-
-  if (isPM) {
-    scheduler = <Scheduler />;
-  } else {
-    scheduler = "No schedule for you";
-  }
 
   return (
     <React.Fragment>
@@ -27,7 +17,6 @@ const NewTask = props => {
         resourceList={props.resourceList}
         closeModal={props.onToggleTaskNew}
       />
-      {scheduler}
     </React.Fragment>
   );
 };
