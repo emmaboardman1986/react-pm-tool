@@ -90,30 +90,11 @@ const WeeklyGrid = props => {
 
   const generateTaskClasses = task => {
     var t0 = performance.now();
-    let color;
-    switch (task.clientName) {
-      case "Delos":
-        color = "#C6F400";
-        break;
-      case "Shogun World":
-        color = "#F48A18";
-        break;
-      case "Ford":
-        color = "#B087FF";
-        break;
-      case "Logan":
-        color = "#1DA4C1";
-        break;
-      default:
-        color = "#1DA4C1";
-        break;
-    }
     let marginRight;
     task.taskEndTime.includes(1700)
       ? (marginRight = "5px")
       : (marginRight = "0");
     let dynamicStyles = {
-      backgroundColor: color,
       gridColumnStart: task.taskStartTime,
       gridRowStart: "row1-start",
       gridRowEnd: "row1-end",
@@ -135,8 +116,8 @@ const WeeklyGrid = props => {
         <Task
           key={task.taskId}
           style={generateTaskClasses(task)}
+          taskInformation={task}
           taskClicked={() => {
-            // props.taskClicked(task);
             props.onShowTaskDetail(task);
           }}
         >

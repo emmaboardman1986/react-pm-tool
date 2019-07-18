@@ -6,11 +6,25 @@ import { withRouter, Link } from 'react-router-dom';
 
 const Header = (props) => {
 
+	let notification;
+	
+	const returnNotification = () => {
+		if (props.match.url === "/unscheduledtask") {
+			notification = null
+		} else if (props.match.url === "/pm") {
+			notification = <Notification user="pm" />
+		} else if (props.match.url === "/client") {
+			notification = <Notification user="client" />
+		} 
+		return notification;
+	} 
+		
+
 	return (
 		<header className={classes.Header}>
 			<Logo />
 			<Link to="/unscheduledtasks">
-			{props.match.url === "/pm" ? <Notification user="pm" /> : <Notification user="client" />}
+			{returnNotification()}
 			</Link>
 		</header>
 		);

@@ -23,4 +23,4 @@ const Notification = props => (
   </div>
 );
 
-export default Notification;
+export default withRouter(Notification);

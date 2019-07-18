@@ -1,81 +1,63 @@
 import React from "react";
 import Task from '../../components/Task/Task'
 import classes from './UnscheduledTaskList.module.css'
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/index'
 
 const UnscheduledTaskList = props => {
 
-  const generateTaskClasses = task => {
-    var t0 = performance.now();
-    let color;
-    switch (task.clientName) {
-      case "Delos":
-        color = "#C6F400";
-        break;
-      case "Shogun World":
-        color = "#F48A18";
-        break;
-      case "Ford":
-        color = "#B087FF";
-        break;
-      case "Logan":
-        color = "#1DA4C1";
-        break;
-      default:
-        color = "#1DA4C1";
-        break;
-    }
-    let marginRight;
-    task.taskEndTime.includes(1700)
-      ? (marginRight = "5px")
-      : (marginRight = "0");
-    let dynamicStyles = {
-      backgroundColor: color,
-      gridColumnStart: task.taskStartTime,
-      gridRowStart: "row1-start",
-      gridRowEnd: "row1-end",
-      gridColumnEnd: task.taskEndTime,
-      marginRight: marginRight,
-      zIndex: 2
-    };
-    var t1 = performance.now();
-    console.log(
-      "Call to generateTaskClasses took " + (t1 - t0) + " milliseconds."
-    );
-    return dynamicStyles;
-  };
+  const inlineStyles = {
+     height: '100%',
+     width: '100%'
+  }
 
- 
-  // const returnTasks = () => {
-  //   let tasks = props.unscheduledTasks.map(task => {
-  //     return (
-  //       <Task
-  //         key={task.taskId}
-  //         style={generateTaskClasses(task)}
-  //         taskClicked={() => {
-  //           // props.taskClicked(task);
-  //           props.onShowTaskDetail(task);
-  //         }}
-  //       >
-  //         <p className={classes.ClientName}>
-  //           {task.taskEstimate > 3
-  //             ? task.clientName
-  //             : task.clientName.substring(0, 2) + ".."}
-  //         </p>
-  //         <p className={classes.Title}>
-  //           {task.taskEstimate > 3 ? task.taskTitle : "( ... )"}
-  //         </p>
-  //       </Task>
-  //     );
-  //   });
-  //   return tasks;
-  // };
+
+
+  const returnTasks = () => {
+    let tasks = props.unscheduledTasks.map(task => {
+      return (
+        <div className={classes.UnscheduledTaskList}>
+        <Task
+          key={task.taskId}
+          taskInformation={task}
+          style={inlineStyles}
+          taskClicked={() => {
+          props.onShowTaskDetail(task);
+          }}
+        >
+          <p className={classes.ClientName}>
+            {task.clientName} :  {task.projectTitle}
+            <span className={classes.TaskImpact}>{task.taskImpact}</span>
+          </p>
+          <p className={classes.TaskTitle}>
+            " {task.taskTitle} "
+            </p>
+           <p className={classes.TaskLabel}>Affected Area</p><p className={classes.TaskInformation}>{task.taskAffectedArea}</p>
+           <p className={classes.TaskLabel}>Erroneous Behaviour</p><p className={classes.TaskInformation}>{task.taskErroneousBehaviour}</p>
+           <p className={classes.TaskLabel}>Expected Behaviour</p><p className={classes.TaskInformation}>{task.taskExpectedBehaviour}</p>
+        
+        </Task>
+        </div>
+      );
+    });
+    return tasks;
+  };
 
   return (
     <div>
       <h1>UnscheduledTasks</h1>
-      {/* {props.unscheduledTasks ? returnTasks() : null} */}
+      {props.unscheduledTasks ? returnTasks() : "No unscheduled Tasks"}
     </div>
   );
 };
 
-export default UnscheduledTaskList
+const mapDispatchToProps = dispatch => {
+  return {
+    onShowTaskDetail: task => dispatch(actions.showTaskDetails(task))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(UnscheduledTaskList);
