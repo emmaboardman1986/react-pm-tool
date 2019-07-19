@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Logo from "../Logo/Logo";
+import Logo from "../../components/Logo/Logo";
 import classes from "./Header.module.css";
-import Notification from "../Notification/Notification";
+import Notification from "../../components/Notification/Notification";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";

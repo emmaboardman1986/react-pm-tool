@@ -3,6 +3,7 @@ import classes from "./TaskAdd.module.css";
 import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
+import Button from '../../UI/Button/Button'
 
 const AddTask = props => {
   const [formInput, setFormInput] = useState({
@@ -169,13 +170,14 @@ const AddTask = props => {
             </div>
           </div>
           <div className={classes.BottomOnDesktop}>
-            <button
+            <Button type="submit" data-cy="add-task-submit">Add Task</Button>
+            {/* <button
               type="submit"
               data-cy="add-task-submit"
               className={classes.AddTaskBtn}
             >
               Add Task
-            </button>
+            </button> */}
             <p
               className={classes.CancelBtn}
               onClick={props.closeModal}

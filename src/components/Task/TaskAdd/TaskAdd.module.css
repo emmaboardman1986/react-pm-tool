@@ -78,19 +78,10 @@ form {
 	outline: none;
   }
 
-button {
-	background-color: #C7F228;
-	padding: 4% 10%;
-	border: black solid 1px;
-	border-radius: 6px;
-	font-size: 1em;
-	font-weight: 600;
-	margin-top: 10%;
-}
-
 .CancelBtn {
 	font-size: 0.7em;
 	margin-bottom: 1%;
+	text-align: center;
 }
 
 @media (min-width: 600px) {
@@ -140,7 +131,6 @@ button {
 	}
 	.CancelBtn {
 	  margin-bottom: 0;
-	  text-align: center;
 	}
   }
 

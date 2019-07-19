@@ -3,6 +3,7 @@ import classes from "./Schedule.module.css";
 import taskFormClasses from "../../components/Task/TaskAdd/TaskAdd.module.css";
 import unscheduledClasses from "../../components/UnscheduledTaskList/UnscheduledTaskList.module.css";
 import { Redirect } from "react-router-dom"
+import Button from '../../components/UI/Button/Button'
 
 const Schedule = props => {
   const [formInput, setFormInput] = useState({
@@ -137,13 +138,7 @@ const Schedule = props => {
           </li>
         </div>
         <div className={taskFormClasses.BottomOnDesktop}>
-          <button
-            type="submit"
-            data-cy="add-task-submit"
-            className={taskFormClasses.AddTaskBtn}
-          >
-            Schedule Task
-          </button>
+          <Button type="submit" data-cy="add-schedule-submit">Schedule Task</Button>
           <p
             className={taskFormClasses.CancelBtn}
             onClick={props.closeModal}

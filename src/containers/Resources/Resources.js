@@ -15,7 +15,7 @@ const isPM = props.match.url === "/pm" ? true : false;
 	} else {
 		props.onFetchClientTasks()
 	}
-  }, [props.tasks]);
+  }, []);
 
   let resourcesComponents;
 
