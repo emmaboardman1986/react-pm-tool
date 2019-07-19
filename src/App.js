@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "./containers/Layout/Layout";
-import UnscheduledTasks from "./containers/UnscheduledTasks/UnscheduledTasks";
 import Auth from "./containers/Auth/Auth";
 import "./App.css";
 import { Route } from "react-router-dom";

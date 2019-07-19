@@ -8,12 +8,15 @@ const Scheduler = props => {
     props.onFetchTaskOptions();
   }, []);
 
-  useEffect(() => {
-    props.onHandleSchedulePlacement(
-      props.resourceAndEstimate,
-      props.resourceSchedule
-    );
-  }, [props.resourceSchedule, props.resourceAndEstimate]);
+  useEffect(
+    props => {
+      props.onHandleSchedulePlacement(
+        props.resourceAndEstimate,
+        props.resourceSchedule
+      );
+    },
+    [props.resourceSchedule, props.resourceAndEstimate]
+  );
 
   return (
     <Schedule
@@ -45,7 +48,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         actions.handleSchedulePlacement(resourceAndEstimate, resourceSchedule)
       ),
-    onHandleScheduleSubmit: (formInput) => dispatch(actions.handleScheduleSubmit(formInput)) 
+    onHandleScheduleSubmit: formInput =>
+      dispatch(actions.handleScheduleSubmit(formInput))
   };
 };
 

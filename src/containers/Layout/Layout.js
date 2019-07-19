@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../Header/Header";
 import Calendar from "../../components/Calendar/Calendar";
 import UnscheduledTasks from "../../containers/UnscheduledTasks/UnscheduledTasks";
 import Footer from "../../components/Footer/Footer";
 import Modal from "../../components/UI/Modal/Modal";
-import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
 import TaskDetail from "../../components/Task/TaskDetail/TaskDetail";
 import TaskNew from "../TaskNew/TaskNew";
-import axios from "axios";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import { withRouter } from "react-router-dom";
 
 const Layout = props => {
-
   return (
     <React.Fragment>
       <Modal
@@ -48,11 +45,6 @@ const Layout = props => {
       <Footer clicked={props.onToggleTaskNewModal} />
     </React.Fragment>
   );
-};
-
-const resourceAndEstimate = {
-  resourceId: 1,
-  taskEstimate: 4
 };
 
 const mapStateToProps = state => {

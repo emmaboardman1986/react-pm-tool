@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classes from "./TaskAdd.module.css";
 import axios from "axios";
 import { connect } from "react-redux";
-import * as actions from "../../../store/actions/index";
 import Button from '../../UI/Button/Button'
 
 const AddTask = props => {
@@ -16,16 +15,6 @@ const AddTask = props => {
     taskTimeNoticed: "",
     taskRecentChanges: ""
   });
-
-  // useEffect(() => {
-  //   setFormInput({
-  //     ...formInput,
-  //     taskStartTime: props.availableTimes.startTime,
-  //     taskEndTime: props.availableTimes.endTime
-  //   });
-  // }, [props.availableTimes]);
-
-  // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const handleInputChange = event => {
     const target = event.target;

@@ -5,17 +5,28 @@ import * as actions from "../../store/actions/index";
 import { withRouter } from "react-router-dom";
 
 const NewTask = props => {
-  useEffect(() => {
+  useEffect((props) => {
     props.onFetchTaskOptions();
   }, []);
 
+  const isPM = props.match.url === "/pm" ? true : false;
+  let clientProjectList = props.projectList.reduce(
+    (clientSpecificProjects, project) => {
+      if (project.clientName === "Ford") {
+        clientSpecificProjects.push(project);
+      }
+      return clientSpecificProjects;
+      
+    }, []
+  );
 
   return (
     <React.Fragment>
       <TaskAdd
-        projectList={props.projectList}
+        projectList={isPM ? props.projectList : clientProjectList}
         resourceList={props.resourceList}
         closeModal={props.onToggleTaskNew}
+        user={isPM ? "pm" : "client"}
       />
     </React.Fragment>
   );

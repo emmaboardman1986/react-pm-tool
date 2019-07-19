@@ -14,7 +14,7 @@ const Schedule = props => {
     taskResource: ""
   });
 
-  useEffect(() => {
+  useEffect((props, formInput) => {
     setFormInput({
       ...formInput,
       taskId: props.taskToBeScheduled.taskId,

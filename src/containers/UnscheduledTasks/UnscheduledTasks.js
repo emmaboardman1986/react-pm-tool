@@ -6,9 +6,10 @@ import Modal from "../../components/UI/Modal/Modal";
 import Scheduler from "../../containers/Scheduler/Scheduler";
 
 const UnscheduledTasks = props => {
-  useEffect(() => {
+
+  useEffect((props) => {
     props.onFetchUnscheduledTasks();
-  }, []);
+  }, [props.unscheduledTasks]);
 
   return (
     <div>

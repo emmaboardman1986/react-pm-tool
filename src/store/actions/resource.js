@@ -108,7 +108,7 @@ export const handleSchedulePlacement = (resourceAndEstimate, resourceSchedule) =
       const startTime = resourceSchedule[n].taskStartTime;
       const estimatedTime = resourceSchedule[n].taskEstimate;
       for (let i = 0; i < weeklyTimeSlots.length; i++) {
-        if (weeklyTimeSlots[i] == startTime) {
+        if (weeklyTimeSlots[i] === startTime) {
           for (let j = 0; j < estimatedTime; j++) {
             weeklyAvailability[i + j] = false;
           }
@@ -140,7 +140,7 @@ const findAvailability = (arr, subarr) => {
   for (var i = 0; i < 1 + (arr.length - subarr.length); i++) {
     var j = 0;
     for (; j < subarr.length; j++) if (arr[i + j] !== subarr[j]) break;
-    if (j == subarr.length) return i;
+    if (j === subarr.length) return i;
   }
   var t1 = performance.now();
   console.log(

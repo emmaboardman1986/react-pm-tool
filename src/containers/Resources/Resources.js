@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Resource from "../../components/Resource/Resource";
 import classes from "./Resources.module.css";
 import * as actions from "../../store/actions/index";
@@ -9,13 +9,13 @@ const Resources = props => {
 
 const isPM = props.match.url === "/pm" ? true : false;
 
-  useEffect(() => {
+  useEffect((props, isPM) => {
 	if (isPM){
 	props.onFetchTasks();
 	} else {
 		props.onFetchClientTasks()
 	}
-  }, []);
+  }, [props.tasks]);
 
   let resourcesComponents;
 
