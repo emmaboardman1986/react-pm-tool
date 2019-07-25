@@ -53,7 +53,12 @@ const Layout = () => {
   }, [resourceSchedule, resourceAndEstimate]);
 
   const handleTaskAdd = () => {
+    var t0 = performance.now();
     setTaskAdd(!showTaskAdd);
+    var t1 = performance.now();
+    console.log(
+      "Call to toggleTaskNew took " + (t1 - t0) + " milliseconds."
+    );
   };
 
   const clickTask = task => {
@@ -62,8 +67,14 @@ const Layout = () => {
   };
 
   const handleTaskDetail = () => {
+    var t0 = performance.now();
     let toggle = !showTaskDetail;
     setTaskDetail(toggle);
+    var t1 = performance.now();
+    console.log(
+      "Call to handleTaskDetail took " + (t1 - t0) + " milliseconds."
+    );
+
   };
 
   const handleTaskPresets = projectList => {
@@ -84,8 +95,8 @@ const Layout = () => {
       return formPresetsArray;
     },
     []);
-	setProjectList(projectsArray);
-	var t1 = performance.now();
+    setProjectList(projectsArray);
+    var t1 = performance.now();
     console.log(
       "Call to handleTaskPresets took " + (t1 - t0) + " milliseconds."
     );
