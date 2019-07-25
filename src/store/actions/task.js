@@ -97,6 +97,11 @@ export const hideTaskDetails = () => {
 }
 
 export const toggleTaskNew = () => {
+  var t0 = performance.now();
+  var t1 = performance.now();
+  console.log(
+    "Call to toggleTaskNew took " + (t1 - t0) + " milliseconds."
+  );
   return {
     type: actionTypes.TOGGLE_TASK_NEW,
   }

@@ -4,7 +4,6 @@ import classes from "./Task.module.css";
 const Task = props => {
 
 	const generateTaskClasses = task => {
-		var t0 = performance.now();
 		let color;
 		switch (task.clientName) {
 		  case "Delos":
@@ -26,10 +25,6 @@ const Task = props => {
 		let dynamicStyles = {
 		  backgroundColor: color,
 		};
-		var t1 = performance.now();
-		console.log(
-		  "Call to generateTaskClasses took " + (t1 - t0) + " milliseconds."
-		);
 		return dynamicStyles;
 	  };
 

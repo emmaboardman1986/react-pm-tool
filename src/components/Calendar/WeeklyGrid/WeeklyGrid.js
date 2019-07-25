@@ -10,17 +10,13 @@ const WeeklyGrid = props => {
     return new Date();
   };
   const getMonday = () => {
-    var t0 = performance.now();
     let currentDate = getCurrentDate(),
       currentDay = currentDate.getDay(),
       diff = currentDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1),
       monday = new Date(currentDate.setDate(diff));
-    var t1 = performance.now();
-    console.log("Call to getMonday took " + (t1 - t0) + " milliseconds.");
     return monday;
   };
   const getWeeklyArray = () => {
-    var t0 = performance.now();
     let monday = getMonday(),
       currentWeek = [];
     const months = [
@@ -52,8 +48,6 @@ const WeeklyGrid = props => {
         months[tempDate.getMonth()];
       currentWeek.push(dateString);
     }
-    var t1 = performance.now();
-    console.log("Call to getWeeklyArray took " + (t1 - t0) + " milliseconds.");
     return currentWeek;
   };
 
@@ -72,7 +66,6 @@ const WeeklyGrid = props => {
   };
 
   const returnCurrentWeek = () => {
-    var t0 = performance.now();
     const daysOfWeek = getWeeklyArray().map(day => {
       const dayClass = day.replace(/ .*/, "");
       return (
@@ -81,15 +74,10 @@ const WeeklyGrid = props => {
         </DayDate>
       );
     });
-    var t1 = performance.now();
-    console.log(
-      "Call to returnCurrentWeek took " + (t1 - t0) + " milliseconds."
-    );
     return daysOfWeek;
   };
 
   const generateTaskClasses = task => {
-    var t0 = performance.now();
     let marginRight;
     task.taskEndTime.includes(1700)
       ? (marginRight = "5px")
@@ -102,10 +90,6 @@ const WeeklyGrid = props => {
       marginRight: marginRight,
       zIndex: 2
     };
-    var t1 = performance.now();
-    console.log(
-      "Call to generateTaskClasses took " + (t1 - t0) + " milliseconds."
-    );
     return dynamicStyles;
   };
 
