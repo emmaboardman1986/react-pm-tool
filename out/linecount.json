@@ -1,0 +1,553 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/Users/e2/Desktop/react-mvp",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2019-07-25 08:19:20",
+            "filesum": 89,
+            "codesum": 16487,
+            "commentsum": 125,
+            "blanksum": 364,
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "cypress.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "cypress/fixtures/example.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "cypress/integration/taskadd_spec.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 2,
+                    "comment": 13,
+                    "filename": "cypress/plugins/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 25,
+                    "filename": "cypress/support/commands.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 1,
+                    "comment": 17,
+                    "filename": "cypress/support/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 13779,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 23,
+                    "filename": "public/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "public/manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "filename": "Screenshot 2019-06-25 at 11.16.03.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/App.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/App.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/App.test.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/addButton.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/noNewTasks.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/notification.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/notificationAlarm.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/scheduleComplete.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/schedulePending.svg"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/Calendar.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/Calendar.module.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/DayDate/DayDate.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/DayDate/DayDate.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/Hours/Hour/Hour.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/Hours/Hour/Hour.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/Hours/Hours.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/Hours/Hours.module.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/RowHeaders/RowHeaders.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/RowHeaders/RowHeaders.module.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 144,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/WeeklyGrid/WeeklyGrid.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "src/components/Calendar/WeeklyGrid/WeeklyGrid.module.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/Footer/AddButton/AddButton.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/Footer/AddButton/AddButton.module.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/Footer/Footer.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/Footer/Footer.module.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/components/Logo/Logo.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/components/Logo/Logo.module.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src/components/Notification/Notification.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/components/Notification/Notification.module.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/components/Resource/Resource.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/Resource/Resource.module.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/Resource/ResourceName/ResourceName.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src/components/Resource/ResourceName/ResourceName.module.css"
+                },
+                {
+                    "blank": 15,
+                    "code": 143,
+                    "comment": 0,
+                    "filename": "src/components/Schedule/Schedule.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src/components/Schedule/Schedule.module.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": "src/components/Task/Task.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/components/Task/Task.module.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 177,
+                    "comment": 6,
+                    "filename": "src/components/Task/TaskAdd/TaskAdd.js"
+                },
+                {
+                    "blank": 16,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "src/components/Task/TaskAdd/TaskAdd.module.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "src/components/Task/TaskDetail/TaskDetail.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "src/components/Task/TaskDetail/TaskDetail.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/components/UI/Backdrop/Backdrop.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/UI/Backdrop/Backdrop.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/components/UI/Button/Button.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/UI/Button/Button.module.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src/components/UI/Modal/Modal.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/components/UI/Modal/Modal.module.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 66,
+                    "comment": 0,
+                    "filename": "src/components/UnscheduledTaskList/UnscheduledTaskList.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src/components/UnscheduledTaskList/UnscheduledTaskList.module.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 13,
+                    "comment": 1,
+                    "filename": "src/containers/Auth/Auth.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/containers/Auth/Auth.module.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "src/containers/Header/Header.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 38,
+                    "comment": 1,
+                    "filename": "src/containers/Header/Header.module.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "src/containers/Layout/Layout.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "src/containers/Resources/Resources.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/containers/Resources/Resources.module.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/containers/Scheduler/Scheduler.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/containers/TaskNew/TaskNew.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "src/containers/UnscheduledTasks/UnscheduledTasks.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/index.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 37,
+                    "comment": 4,
+                    "filename": "src/index.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 89,
+                    "comment": 31,
+                    "filename": "src/serviceWorker.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/store/actions/actionTypes.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/store/actions/client.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src/store/actions/index.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 141,
+                    "comment": 0,
+                    "filename": "src/store/actions/resource.js"
+                },
+                {
+                    "blank": 22,
+                    "code": 167,
+                    "comment": 0,
+                    "filename": "src/store/actions/task.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/store/reducers/client.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/store/reducers/resource.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 115,
+                    "comment": 0,
+                    "filename": "src/store/reducers/task.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/store/utility/utility.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/utils/Repository.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/utils/RepositoryFactory.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/utils/resourceRepository.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/utils/taskRepository.js"
+                }
+            ]
+        }
+    ]
+}

@@ -7,9 +7,10 @@ import Scheduler from "../../containers/Scheduler/Scheduler";
 
 const UnscheduledTasks = props => {
 
-  useEffect((props) => {
+  let { unscheduledTasks } = props;
+  useEffect(() => {
     props.onFetchUnscheduledTasks();
-  }, [props.unscheduledTasks]);
+  }, []);
 
   return (
     <div>

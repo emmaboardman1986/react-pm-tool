@@ -5,7 +5,7 @@ import * as actions from "../../store/actions/index";
 import { withRouter } from "react-router-dom";
 
 const NewTask = props => {
-  useEffect((props) => {
+  useEffect(() => {
     props.onFetchTaskOptions();
   }, []);
 

@@ -14,14 +14,16 @@ const Schedule = props => {
     taskResource: ""
   });
 
-  useEffect((props, formInput) => {
+  let { availableTimes, taskToBeScheduled } = props;
+
+  useEffect(() => {
     setFormInput({
       ...formInput,
-      taskId: props.taskToBeScheduled.taskId,
-      taskStartTime: props.availableTimes.startTime,
-      taskEndTime: props.availableTimes.endTime
+      taskId: taskToBeScheduled.taskId,
+      taskStartTime: availableTimes.startTime,
+      taskEndTime: availableTimes.endTime
     });
-  }, [props.availableTimes]);
+  }, [availableTimes]);
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 

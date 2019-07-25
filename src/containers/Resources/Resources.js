@@ -7,15 +7,16 @@ import { withRouter } from "react-router-dom";
 
 const Resources = props => {
 
+let { tasks } = props;
 const isPM = props.match.url === "/pm" ? true : false;
 
-  useEffect((props, isPM) => {
+  useEffect(() => {
 	if (isPM){
 	props.onFetchTasks();
 	} else {
 		props.onFetchClientTasks()
 	}
-  }, [props.tasks]);
+  }, []);
 
   let resourcesComponents;
 

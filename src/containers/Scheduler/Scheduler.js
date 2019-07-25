@@ -8,14 +8,15 @@ const Scheduler = props => {
     props.onFetchTaskOptions();
   }, []);
 
-  useEffect(
-    props => {
+  let { resourceSchedule, resourceAndEstimate} = props;
+
+  useEffect(() => {
       props.onHandleSchedulePlacement(
-        props.resourceAndEstimate,
-        props.resourceSchedule
+        resourceAndEstimate,
+        resourceSchedule
       );
     },
-    [props.resourceSchedule, props.resourceAndEstimate]
+    [resourceSchedule, resourceAndEstimate]
   );
 
   return (
