@@ -8,16 +8,11 @@ const Scheduler = props => {
     props.onFetchTaskOptions();
   }, []);
 
-  let { resourceSchedule, resourceAndEstimate} = props;
+  let { resourceSchedule, resourceAndEstimate } = props;
 
   useEffect(() => {
-      props.onHandleSchedulePlacement(
-        resourceAndEstimate,
-        resourceSchedule
-      );
-    },
-    [resourceSchedule, resourceAndEstimate]
-  );
+    props.onHandleSchedulePlacement(resourceAndEstimate, resourceSchedule);
+  }, [resourceSchedule, resourceAndEstimate]);
 
   return (
     <Schedule
@@ -43,8 +38,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchTaskOptions: () => dispatch(actions.fetchTaskOptions()),
-    onFetchResourceSchedule: resourceAndEstimate =>
-      dispatch(actions.fetchResourceSchedule(resourceAndEstimate)),
+    onFetchResourceSchedule: resourceAndEstimate => {
+      var t0 = performance.now();
+      dispatch(actions.fetchResourceSchedule(resourceAndEstimate));
+      var t1 = performance.now();
+      console.log(
+        "Call to fetchResourceSchedule took " +
+          (t1 - t0) +
+          " milliseconds."
+      );
+    },
     onHandleSchedulePlacement: (resourceAndEstimate, resourceSchedule) =>
       dispatch(
         actions.handleSchedulePlacement(resourceAndEstimate, resourceSchedule)

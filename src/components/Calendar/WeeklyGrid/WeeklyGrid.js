@@ -129,7 +129,16 @@ const WeeklyGrid = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onShowTaskDetail: task => dispatch(actions.showTaskDetails(task))
+    onShowTaskDetail: task => {
+      var t0 = performance.now();
+      dispatch(actions.showTaskDetails(task))
+      var t1 = performance.now();
+    console.log(
+      "Call to showTaskDetails took " +
+        (t1 - t0) +
+        " milliseconds."
+    );
+    }
   };
 };
 

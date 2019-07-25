@@ -60,12 +60,36 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchResourceSchedule: resourceAndEstimate =>
-      dispatch(actions.fetchResourceSchedule(resourceAndEstimate)),
+    onFetchResourceSchedule: resourceAndEstimate => {
+      var t0 = performance.now();
+      dispatch(actions.fetchResourceSchedule(resourceAndEstimate))
+      var t1 = performance.now();
+      console.log(
+        "Call to fetchResourceSchedule took " +
+          (t1 - t0) +
+          " milliseconds.")
+    },
     onHandleResourceAvailability: availability =>
       dispatch(actions.handleSchedulePlacement(availability)),
-    onCloseTaskDetailModal: () => dispatch(actions.hideTaskDetails()),
-    onToggleTaskNewModal: () => dispatch(actions.toggleTaskNew())
+    onCloseTaskDetailModal: () => {
+      var t0 = performance.now();
+      dispatch(actions.hideTaskDetails())
+      var t1 = performance.now();
+      console.log(
+        "Call to hideTaskDetails took " +
+          (t1 - t0) +
+          " milliseconds.")
+    },
+    onToggleTaskNewModal: () => {
+      var t0 = performance.now();
+       dispatch(actions.toggleTaskNew());
+      var t1 = performance.now();
+      console.log(
+        "Call to toggleTaskNew took " +
+          (t1 - t0) +
+          " milliseconds.")
+    }
+      
   };
 };
 
