@@ -72,7 +72,7 @@ const Layout = () => {
     setTaskDetail(toggle);
     var t1 = performance.now();
     console.log(
-      "Call to handleTaskDetail took " + (t1 - t0) + " milliseconds."
+      "Call to toggleTaskDetail took " + (t1 - t0) + " milliseconds."
     );
 
   };
