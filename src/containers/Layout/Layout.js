@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import { withRouter } from "react-router-dom";
 
+
 const Layout = props => {
   return (
     <React.Fragment>

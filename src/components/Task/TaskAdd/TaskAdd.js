@@ -53,7 +53,7 @@ const AddTask = props => {
     event.preventDefault();
     console.log(formInput);
     axios
-      .post("http://40414669.wdd.napier.ac.uk/inc/postNewTask.php", formInput)
+      .post("http://40414669.wdd.napier.ac.uk/inc/postNewTaskincSchedule.php", formInput)
       .then(response => {
         console.log(response);
         props.closeModal();
