@@ -4,6 +4,8 @@ The aim of the project is to critically evaluate the comparative adaptability an
 
 ![Image of Design](http://www.emmaboardman.co.uk/portfolio/img/diss-mobile.png)
 
+Example User Stories:
+
 | Feature | User Story |
 | ------------- | ------------- |
 | Calendar View to display tasks per resource| (US001) As a Project Manager, I want to be able to quickly understand what everyone is working on for the upcoming week, so that I have an overview of what is going on|
