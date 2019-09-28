@@ -1,0 +1,45 @@
+.UnscheduledTaskList {
+  display: flex;
+  margin: 0 4%;
+}
+
+p {
+  font-size: 0.8em;
+}
+
+.TopRowWrapper {
+  display: flex;
+  justify-content: space-between
+}
+
+.ClientName {
+  font-weight: 600;
+}
+
+.TaskTitle {
+  font-size: 1em;
+  border-bottom: dashed 1px black;
+  padding-bottom: 3%;
+  width: 97%;
+  margin: 0 auto;
+}
+
+.TaskInformation {
+  margin-top: 2%;
+  font-size: 0.9em;
+}
+
+.TaskImpact {
+  font-weight: 800;
+  background-color: #fff;
+  padding: 4%;
+  width: 100%;
+  border-radius: 6px;
+  border: black solid 1px;
+  margin-left: 3%;
+}
+
+.TaskLabel {
+  font-weight: 400;
+  margin-bottom: 0;
+}

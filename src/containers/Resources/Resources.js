@@ -1,51 +1,67 @@
-import React, {useState, useEffect} from 'react';
-import Resource from '../../components/Resource/Resource';
-import classes from './Resources.module.css';
-import { RepositoryFactory } from "../../utils/RepositoryFactory";
-import axios from "axios";
-import { tsPropertySignature } from '@babel/types';
-const ResourceRepository = RepositoryFactory.get("resources");
-const TaskRepository = RepositoryFactory.get("tasks");
+import React, { useEffect } from "react";
+import Resource from "../../components/Resource/Resource";
+import classes from "./Resources.module.css";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
+const Resources = props => {
 
-const Resources = (props) => {
-	
-	const [resourceList, setResourceList] = useState([]);
+let { tasks } = props;
+const isPM = props.match.url === "/pm" ? true : false;
 
-	useEffect(() => {
-		var t0 = performance.now();
-		axios.get('http://40414669.wdd.napier.ac.uk/inc/readTaskDetails.php')
-		.then(result => {
-		console.log(result);
-		setResourceList(result.data);
-		});
-		var t1 = performance.now();
-		console.log(
-		  "Call to useEffect for readTaskDetails took " + (t1 - t0) + " milliseconds."
+  useEffect(() => {
+	if (isPM){
+	props.onFetchTasks();
+	} else {
+		props.onFetchClientTasks()
+	}
+  }, []);
+
+  let resourcesComponents;
+
+  if (isPM) {
+    resourcesComponents = props.resourceList.map(resource => {
+      return (
+        <Resource
+          key={resource.resourceId}
+          name={resource.resourceName}
+          job={resource.resourceJobTitle}
+          tasks={resource.tasks}
+        />
+      );
+    });
+  } else {
+    resourcesComponents = props.clientResourceList.map(resource => {
+		return (
+		  <Resource
+			key={resource.resourceId}
+			job={resource.resourceJobTitle}
+			tasks={resource.tasks}
+		  />
 		);
-		return () => {
-			setResourceList([]);
-		}
-		
-	}, []);
+	  });
+  }
 
-
-	let resourcesComponents = resourceList.map(resource => {
-		return (<Resource 
-					key={resource.resourceId} 
-					name={resource.resourceName} 
-					job={resource.resourceJobTitle} 
-					tasks={resource.tasks}
-					taskClicked={props.taskClicked}
-					 />);	
-	})
-
-    return (
-		<div className={classes.Resources}>
-		{resourcesComponents}
-		</div>
-	);
-
+  return <div className={classes.Resources}>{resourcesComponents}</div>;
 };
 
-export default Resources;
+const mapStateToProps = state => {
+  return {
+	resourceList: state.taskReducer.tasks,
+  clientResourceList: state.clientReducer.clientResourceList,
+  tasks: state.taskReducer.tasks
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+	onFetchTasks: () => dispatch(actions.fetchTasks()),
+	onFetchClientTasks: () => dispatch(actions.fetchClientResources())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Resources));

@@ -2,7 +2,7 @@ describe('Add New Task Flow', function() {
     it('should add a new task to calendar', function() {
       cy.visit('http://localhost:3000/pm')
       cy.get('[data-cy=add-task-button]').click()
-      // cy.get('[data-cy=add-task-modal]').should('be.visible')
+      cy.get('[data-cy=add-task-modal]').should('be.visible')
       // cy.get('#projectId').select('Delos: Main Store').should('have.value', '5')
       // cy.get('#taskTitle').type('Test Task Title').should('have.value', 'Test Task Title') 
       // cy.get('#taskArea').type('Test Task Area').should('have.value', 'Test Task Area')  

@@ -2,6 +2,8 @@ import React from "react";
 import Task from "../../Task/Task";
 import DayDate from "../DayDate/DayDate";
 import classes from "./WeeklyGrid.module.css";
+import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 
 const WeeklyGrid = props => {
   const getCurrentDate = () => {
@@ -76,30 +78,11 @@ const WeeklyGrid = props => {
   };
 
   const generateTaskClasses = task => {
-    let color;
-    switch (task.clientName) {
-      case "Delos":
-        color = "#C6F400";
-        break;
-      case "Shogun World":
-        color = "#F48A18";
-        break;
-      case "Ford":
-        color = "#B087FF";
-        break;
-      case "Logan":
-        color = "#1DA4C1";
-        break;
-      default:
-        color = "#1DA4C1";
-        break;
-    }
     let marginRight;
     task.taskEndTime.includes(1700)
       ? (marginRight = "5px")
       : (marginRight = "0");
     let dynamicStyles = {
-      backgroundColor: color,
       gridColumnStart: task.taskStartTime,
       gridRowStart: "row1-start",
       gridRowEnd: "row1-end",
@@ -117,8 +100,9 @@ const WeeklyGrid = props => {
         <Task
           key={task.taskId}
           style={generateTaskClasses(task)}
+          taskInformation={task}
           taskClicked={() => {
-            props.taskClicked(task);
+            props.onShowTaskDetail(task);
           }}
         >
           <p className={classes.ClientName}>
@@ -143,4 +127,22 @@ const WeeklyGrid = props => {
   );
 };
 
-export default WeeklyGrid;
+const mapDispatchToProps = dispatch => {
+  return {
+    onShowTaskDetail: task => {
+      var t0 = performance.now();
+      dispatch(actions.showTaskDetails(task))
+      var t1 = performance.now();
+    console.log(
+      "Call to showTaskDetails took " +
+        (t1 - t0) +
+        " milliseconds."
+    );
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(WeeklyGrid);

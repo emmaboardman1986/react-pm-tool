@@ -1,251 +1,100 @@
-import React, { useState, useEffect } from "react";
-import Header from "../../components/Header/Header";
+import React from "react";
+import Header from "../Header/Header";
 import Calendar from "../../components/Calendar/Calendar";
+import UnscheduledTasks from "../../containers/UnscheduledTasks/UnscheduledTasks";
 import Footer from "../../components/Footer/Footer";
 import Modal from "../../components/UI/Modal/Modal";
-import TaskAdd from "../../components/Task/TaskAdd/TaskAdd";
 import TaskDetail from "../../components/Task/TaskDetail/TaskDetail";
-import axios from "axios";
+import TaskNew from "../TaskNew/TaskNew";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
+import { withRouter } from "react-router-dom";
 
-const Layout = () => {
-  const [showTaskAdd, setTaskAdd] = useState(false);
-  const [showTaskDetail, setTaskDetail] = useState(false);
-  const [selectedTask, setSelectedTask] = useState({
-    taskId: "0",
-    taskTitle: "No task was selected, please exit the screen and click a task",
-    taskAffectedArea: "n/a",
-    taskErroneousBehaviour: "n/a",
-    taskExpectedBehaviour: "n/a",
-    taskImpact: "n/a",
-    taskStartTime: "n/a",
-    taskEndTime: "n/a",
-    taskEstimate: "n/a",
-    projectTitle: "n/a",
-    clientName: "n/a"
-  });
-  const [projectList, setProjectList] = useState([]);
-  const [resourceList, setResourceList] = useState([]);
-  const [resourceSchedule, setResourceSchedule] = useState("resourceSchedule");
-  const [availability, setAvailability] = useState({
-    startTime: "",
-    endTime: ""
-  });
-  const [resourceAndEstimate, setResourceAndEstimate] = useState("r and e");
 
-  useEffect(() => {
-    var t0 = performance.now();
-    axios
-      .get("http://40414669.wdd.napier.ac.uk/inc/readAddTaskOptions.php")
-      .then(result => {
-        setProjectList(result.data["clientProjects"]);
-        setResourceList(result.data["resources"]);
-        handleTaskPresets(result.data["clientProjects"]);
-      });
-    var t1 = performance.now();
-    console.log(
-      "Call to useEffect for task options took " + (t1 - t0) + " milliseconds."
-    );
-  }, []);
-
-  useEffect(() => {
-    handleSchedulePlacement(resourceAndEstimate);
-    console.log(resourceAndEstimate);
-  }, [resourceSchedule, resourceAndEstimate]);
-
-  const handleTaskAdd = () => {
-    var t0 = performance.now();
-    setTaskAdd(!showTaskAdd);
-    var t1 = performance.now();
-    console.log(
-      "Call to toggleTaskNew took " + (t1 - t0) + " milliseconds."
-    );
-  };
-
-  const clickTask = task => {
-    setSelectedTask(task);
-    handleTaskDetail();
-  };
-
-  const handleTaskDetail = () => {
-    var t0 = performance.now();
-    let toggle = !showTaskDetail;
-    setTaskDetail(toggle);
-    var t1 = performance.now();
-    console.log(
-      "Call to toggleTaskDetail took " + (t1 - t0) + " milliseconds."
-    );
-
-  };
-
-  const handleTaskPresets = projectList => {
-    var t0 = performance.now();
-    let projectsArray = projectList.reduce(function(
-      formPresetsArray,
-      clientObj
-    ) {
-      console.log("client object:" + clientObj.clientName);
-      for (let j = 0; j < clientObj.projects.length; j++) {
-        let clientObject = {
-          clientName: clientObj.clientName,
-          projectName: clientObj.projects[j].projectTitle,
-          projectId: clientObj.projects[j].projectId
-        };
-        formPresetsArray.push(clientObject);
-      }
-      return formPresetsArray;
-    },
-    []);
-    setProjectList(projectsArray);
-    var t1 = performance.now();
-    console.log(
-      "Call to handleTaskPresets took " + (t1 - t0) + " milliseconds."
-    );
-  };
-
-  const fetchResourceSchedule = resourceAndEstimate => {
-    var t0 = performance.now();
-    let url =
-      "http://40414669.wdd.napier.ac.uk/inc/readResourceSchedule.php/?id=" +
-      resourceAndEstimate.resourceId;
-    axios.get(url).then(result => {
-      setResourceSchedule(result.data);
-      setResourceAndEstimate(resourceAndEstimate);
-    });
-    var t1 = performance.now();
-    console.log(
-      "Call to fetchResourceSchedule took " + (t1 - t0) + " milliseconds."
-    );
-  };
-
-  const handleSchedulePlacement = resourceAndEstimate => {
-    var t0 = performance.now();
-    console.log("resource schedule: " + resourceSchedule);
-    const weeklyAvailability = Array(45).fill(true);
-    const weeklyTimeSlots = [
-      "Mon0900",
-      "Mon1000",
-      "Mon1100",
-      "Mon1200",
-      "Mon1300",
-      "Mon1400",
-      "Mon1500",
-      "Mon1600",
-      "Mon1700",
-      "Tues0900",
-      "Tues1000",
-      "Tues1100",
-      "Tues1200",
-      "Tues1300",
-      "Tues1400",
-      "Tues1500",
-      "Tues1600",
-      "Tues1700",
-      "Wed0900",
-      "Wed1000",
-      "Wed1100",
-      "Wed1200",
-      "Wed1300",
-      "Wed1400",
-      "Wed1500",
-      "Wed1600",
-      "Wed1700",
-      "Thurs0900",
-      "Thurs1000",
-      "Thurs1100",
-      "Thurs1200",
-      "Thurs1300",
-      "Thurs1400",
-      "Thurs1500",
-      "Thurs1600",
-      "Thurs1700",
-      "Fri0900",
-      "Fri1000",
-      "Fri1100",
-      "Fri1200",
-      "Fri1300",
-      "Fri1400",
-      "Fri1500",
-      "Fri1600",
-      "Fri1700"
-    ];
-    if (resourceSchedule.length > 0) {
-      for (let n = 0; n < resourceSchedule.length; n++) {
-        const startTime = resourceSchedule[n].taskStartTime;
-        const estimatedTime = resourceSchedule[n].taskEstimate;
-        for (let i = 0; i < weeklyTimeSlots.length; i++) {
-          if (weeklyTimeSlots[i] == startTime) {
-            for (let j = 0; j < estimatedTime; j++) {
-              weeklyAvailability[i + j] = false;
-            }
-          }
-        }
-      }
-    }
-    console.log(weeklyAvailability);
-    const estimateArray = Array(resourceAndEstimate.taskEstimate).fill(true);
-    let indexOfFirstAvailability = findAvailability(
-      weeklyAvailability,
-      estimateArray
-    );
-    const endTime =
-      parseInt(indexOfFirstAvailability) +
-      parseInt(resourceAndEstimate.taskEstimate);
-    setAvailability({
-      startTime: weeklyTimeSlots[indexOfFirstAvailability],
-      endTime: weeklyTimeSlots[endTime]
-    });
-    var t1 = performance.now();
-    console.log(
-      "Call to handleSchedulePlacement took " + (t1 - t0) + " milliseconds."
-    );
-  };
-
-  const findAvailability = (arr, subarr) => {
-    var t0 = performance.now();
-    for (var i = 0; i < 1 + (arr.length - subarr.length); i++) {
-      var j = 0;
-      for (; j < subarr.length; j++) if (arr[i + j] !== subarr[j]) break;
-      if (j == subarr.length) return i;
-    }
-    var t1 = performance.now();
-    console.log(
-      "Call to findAvailability took " + (t1 - t0) + " milliseconds."
-    );
-    return -1;
-  };
-
+const Layout = props => {
   return (
     <React.Fragment>
-      <Modal show={showTaskAdd} modalClosed={handleTaskAdd} role="taskAdd">
-        <TaskAdd
-          projectList={projectList}
-          resourceList={resourceList}
-          handleSchedulePlacement={fetchResourceSchedule}
-          availableTimes={availability}
-          closeModal={handleTaskAdd}
-        />
+      <Modal
+        show={props.showTaskNew}
+        modalClosed={props.onToggleTaskNewModal}
+        role="taskAdd"
+      >
+        <TaskNew />
       </Modal>
       <Modal
-        show={showTaskDetail}
-        modalClosed={handleTaskDetail}
+        show={props.showTaskDetail}
+        modalClosed={props.onCloseTaskDetailModal}
         role="taskDetail"
       >
         <TaskDetail
-          taskTitle={selectedTask.taskTitle}
-          taskClientName={selectedTask.clientName}
-          taskImpact={selectedTask.taskImpact}
-          taskProject={selectedTask.taskProjectTitle}
-          taskError={selectedTask.taskErroneousBehaviour}
-          taskStartTime={selectedTask.taskStartTime}
-          taskEndTime={selectedTask.taskEndTime}
-          closeModal={handleTaskDetail}
+          taskTitle={props.selectedTask.taskTitle}
+          taskClientName={props.selectedTask.clientName}
+          taskImpact={props.selectedTask.taskImpact}
+          taskProject={props.selectedTask.taskProjectTitle}
+          taskError={props.selectedTask.taskErroneousBehaviour}
+          taskStartTime={props.selectedTask.taskStartTime}
+          taskEndTime={props.selectedTask.taskEndTime}
+          closeModal={props.onCloseTaskDetailModal}
         />
       </Modal>
       <Header />
-      <Calendar taskClicked={clickTask} />
-      <Footer clicked={handleTaskAdd} />
+      {props.match.url === "/" + props.user + "/unscheduledtasks" ? (
+        <UnscheduledTasks />
+      ) : (
+        <Calendar />
+      )}
+      <Footer clicked={props.onToggleTaskNewModal} />
     </React.Fragment>
   );
 };
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    projectList: state.taskReducer.projectList,
+    resourceList: state.taskReducer.resourceList,
+    resourceSchedule: state.resourceReducer.resourceSchedule,
+    selectedTask: state.taskReducer.selectedTask,
+    showTaskDetail: state.taskReducer.showTaskDetail,
+    showTaskNew: state.taskReducer.showTaskNew
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchResourceSchedule: resourceAndEstimate => {
+      var t0 = performance.now();
+      dispatch(actions.fetchResourceSchedule(resourceAndEstimate))
+      var t1 = performance.now();
+      console.log(
+        "Call to fetchResourceSchedule took " +
+          (t1 - t0) +
+          " milliseconds.")
+    },
+    onHandleResourceAvailability: availability =>
+      dispatch(actions.handleSchedulePlacement(availability)),
+    onCloseTaskDetailModal: () => {
+      var t0 = performance.now();
+      dispatch(actions.hideTaskDetails())
+      var t1 = performance.now();
+      console.log(
+        "Call to hideTaskDetails took " +
+          (t1 - t0) +
+          " milliseconds.")
+    },
+    onToggleTaskNewModal: () => {
+      var t0 = performance.now();
+       dispatch(actions.toggleTaskNew());
+      var t1 = performance.now();
+      console.log(
+        "Call to toggleTaskNew took " +
+          (t1 - t0) +
+          " milliseconds.")
+    }
+      
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Layout));
